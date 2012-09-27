@@ -30,23 +30,13 @@ require_once 'config.php';
 
 
 /**
- * @see Zend_Config
+ * Set up autoloading.
  */
-require_once 'Zend/Config.php';
-
-/**
- * @see TicketEvolution_Webservice
- */
-require_once 'TicketEvolution/Webservice.php';
-
-/**
- * To avoid having to require those files you should set up autoloading.
 require_once 'Zend/Loader/Autoloader.php';
 $autoloader = Zend_Loader_Autoloader::getInstance();
 $autoloader->registerNamespace('Zend_');
 $autoloader->registerNamespace('TicketEvolution_');
 $autoloader->setFallbackAutoloader(true);
- */
 
 
 // Set up some default query options
@@ -80,8 +70,6 @@ if (isset($_REQUEST['apiMethod'])) {
      *
      * @see Zend_Filter_Input
      */
-    require_once 'Zend/Filter/Input.php';
-
     $filters = array(
         '*' => array(
             'StringTrim',

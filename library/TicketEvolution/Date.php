@@ -21,10 +21,6 @@
  * @license     https://github.com/ticketevolution/ticketevolution-php/blob/master/LICENSE.txt     New BSD License
  */
 
-/**
- * Include needed Date classes
- */
-require_once 'Zend/Date.php';
 
 /**
  * Extends Zend_Date with some handy constants and also allows for easy handling

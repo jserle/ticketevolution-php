@@ -291,7 +291,6 @@ abstract class TicketEvolution_DataLoader_Abstract
              * if the specified class cannot be loaded.
              */
             if (!class_exists($this->_statusTableClass)) {
-                require_once 'Zend/Loader.php';
                 Zend_Loader::loadClass($this->_statusTableClass);
             }
 
@@ -411,7 +410,6 @@ abstract class TicketEvolution_DataLoader_Abstract
 
 
         if ($this->_showMemory) {
-            require_once 'Zend/Measure/Binary.php';
             $curMem = memory_get_usage(true);
             $curMem = new Zend_Measure_Binary(memory_get_usage(true), Zend_Measure_Binary::BYTE);
             echo '<h1>Current memory usage after fetching page '
@@ -466,7 +464,6 @@ abstract class TicketEvolution_DataLoader_Abstract
              * if the specified class cannot be loaded.
              */
             if (!class_exists($this->_tableClass)) {
-                require_once 'Zend/Loader.php';
                 Zend_Loader::loadClass($this->_tableClass);
             }
 

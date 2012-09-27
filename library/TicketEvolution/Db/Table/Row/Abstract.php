@@ -24,16 +24,6 @@
 
 
 /**
- * @see Zend_Db
- */
-require_once 'Zend/Db.php';
-
-/**
- * @see Zend_Db_Table_Abstract
- */
-require_once 'Zend/Db/Table/Row/Abstract.php';
-
-/**
  * @category    TicketEvolution
  * @package     TicketEvolution_Db
  * @subpackage  Table

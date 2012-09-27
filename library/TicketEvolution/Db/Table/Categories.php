@@ -24,11 +24,6 @@
 
 
 /**
- * @see TicketEvolution_Db_Table_Abstract
- */
-require_once 'TicketEvolution/Db/Table/Abstract.php';
-
-/**
  * @category    TicketEvolution
  * @package     TicketEvolution_Db
  * @subpackage  Table

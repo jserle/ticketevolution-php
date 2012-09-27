@@ -21,10 +21,6 @@
  * @license     https://github.com/ticketevolution/ticketevolution-php/blob/master/LICENSE.txt     New BSD License
  */
 
-/**
- * @see TicketEvolution_Exception
- */
-require_once 'TicketEvolution/Exception.php';
 
 /**
  * @category    TicketEvolution

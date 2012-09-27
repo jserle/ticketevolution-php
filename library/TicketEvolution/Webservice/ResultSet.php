@@ -24,12 +24,6 @@
 
 
 /**
- * @see TicketEvolution_Webservice_ResultSet_Abstract
- */
-require_once 'TicketEvolution/Webservice/ResultSet/Abstract.php';
-
-
-/**
  * @category    TicketEvolution
  * @package     TicketEvolution_Webservice
  * @subpackage  Webservice

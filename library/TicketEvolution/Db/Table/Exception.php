@@ -23,11 +23,6 @@
 
 
 /**
- * @see TicketEvolution_Exception
- */
-require_once 'TicketEvolution/Db/Exception.php';
-
-/**
  * @category    TicketEvolution
  * @package     TicketEvolution
  * @copyright   Copyright (c) 2012 Team One Tickets & Sports Tours, Inc. (http://www.teamonetickets.com)

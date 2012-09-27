@@ -109,10 +109,6 @@ class TicketEvolution_Webservice
          * Verify that parameters are in an array.
          */
         if (!is_array($config)) {
-            /**
-             * @see TicketEvolution_Webservice_Exception
-             */
-            require_once 'TicketEvolution/Webservice/Exception.php';
             throw new TicketEvolution_Webservice_Exception(
                 'Parameters must be in an array or a Zend_Config object'
             );
@@ -122,10 +118,6 @@ class TicketEvolution_Webservice
          * Verify that an API token has been specified.
          */
         if (!is_string($config['apiToken']) || empty($config['apiToken'])) {
-            /**
-             * @see TicketEvolution_Webservice_Exception
-             */
-            require_once 'TicketEvolution/Webservice/Exception.php';
             throw new TicketEvolution_Webservice_Exception(
                 'API token must be specified in a string'
             );
@@ -135,10 +127,6 @@ class TicketEvolution_Webservice
          * Verify that an API secret key has been specified.
          */
         if (!is_string($config['secretKey']) || empty($config['secretKey'])) {
-            /**
-             * @see TicketEvolution_Webservice_Exception
-             */
-            require_once 'TicketEvolution/Webservice/Exception.php';
             throw new TicketEvolution_Webservice_Exception(
                 'Secret key must be specified in a string'
             );
@@ -320,10 +308,6 @@ class TicketEvolution_Webservice
     {
         $trimmedQuery = trim($query);
         if (empty ($trimmedQuery)) {
-            /**
-             * @see TicketEvolution_Webservice_Exception
-             */
-            require_once 'TicketEvolution/Webservice/Exception.php';
             throw new TicketEvolution_Webservice_Exception(
                 'You must provide a non-empty query string'
             );
@@ -448,10 +432,6 @@ class TicketEvolution_Webservice
     {
         $trimmedQuery = trim($query);
         if (empty ($trimmedQuery)) {
-            /**
-             * @see TicketEvolution_Webservice_Exception
-             */
-            require_once 'TicketEvolution/Webservice/Exception.php';
             throw new TicketEvolution_Webservice_Exception(
                 'You must provide a non-empty query string'
             );
@@ -1544,19 +1524,10 @@ class TicketEvolution_Webservice
     {
         $cleanNumber = preg_replace('/[^0-9]/', '', $creditCardNumber);
 
-        /**
-         * @see Zend_Validate_CreditCard
-         */
-        require_once 'Zend/Validate/CreditCard.php';
-
         $valid = new Zend_Validate_CreditCard();
         if ($valid->isValid($cleanNumber)) {
             return $cleanNumber;
         } else {
-            /**
-             * @see TicketEvolution_Webservice_Exception
-             */
-            require_once 'TicketEvolution/Webservice/Exception.php';
             throw new TicketEvolution_Webservice_Exception(
                 'The credit card provided is not a valid credit card number'
             );
@@ -1654,10 +1625,6 @@ class TicketEvolution_Webservice
     {
         $trimmedQuery = trim($query);
         if (empty ($trimmedQuery)) {
-            /**
-             * @see TicketEvolution_Webservice_Exception
-             */
-            require_once 'TicketEvolution/Webservice/Exception.php';
             throw new TicketEvolution_Webservice_Exception(
                 'You must provide a non-empty query string'
             );
@@ -1782,10 +1749,6 @@ class TicketEvolution_Webservice
     {
         $trimmedQuery = trim($query);
         if (empty ($trimmedQuery)) {
-            /**
-             * @see TicketEvolution_Webservice_Exception
-             */
-            require_once 'TicketEvolution/Webservice/Exception.php';
             throw new TicketEvolution_Webservice_Exception(
                 'You must provide a non-empty query string'
             );
@@ -2179,10 +2142,6 @@ class TicketEvolution_Webservice
     {
         $trimmedQuery = trim($query);
         if (empty ($trimmedQuery)) {
-            /**
-             * @see TicketEvolution_Webservice_Exception
-             */
-            require_once 'TicketEvolution/Webservice/Exception.php';
             throw new TicketEvolution_Webservice_Exception(
                 'You must provide a non-empty query string'
             );
@@ -2233,10 +2192,6 @@ class TicketEvolution_Webservice
     {
         $trimmedQuery = trim($query);
         if (empty ($trimmedQuery)) {
-            /**
-             * @see TicketEvolution_Webservice_Exception
-             */
-            require_once 'TicketEvolution/Webservice/Exception.php';
             throw new TicketEvolution_Webservice_Exception(
                 'You must provide a non-empty query string'
             );
@@ -2400,10 +2355,6 @@ class TicketEvolution_Webservice
     {
         $trimmedQuery = trim($query);
         if (empty ($trimmedQuery)) {
-            /**
-             * @see TicketEvolution_Webservice_Exception
-             */
-            require_once 'TicketEvolution/Webservice/Exception.php';
             throw new TicketEvolution_Webservice_Exception(
                 'You must provide a non-empty query string'
             );
@@ -2526,10 +2477,6 @@ class TicketEvolution_Webservice
     public function listTicketGroups(array $options)
     {
         if (!isset($options['event_id'])) {
-            /**
-             * @see TicketEvolution_Webservice_Exception
-             */
-            require_once 'TicketEvolution/Webservice/Exception.php';
             throw new TicketEvolution_Webservice_Exception(
                 '"event_id" is a required parameter'
             );
@@ -2859,10 +2806,6 @@ class TicketEvolution_Webservice
         $response = $client->restPost($this->_apiPrefix . $endPoint, $options);
 
         if ($response->isError()) {
-            /**
-             * @see TicketEvolution_Webservice_Exception
-             */
-            require_once 'TicketEvolution/Webservice/Exception.php';
             throw new TicketEvolution_Webservice_Exception(
                 'An error occurred sending request. Status code: '
                 . $response->getStatus()
@@ -2926,10 +2869,6 @@ class TicketEvolution_Webservice
         $response = $client->restPost($this->_apiPrefix . $endPoint, $options);
 
         if ($response->isError()) {
-            /**
-             * @see TicketEvolution_Webservice_Exception
-             */
-            require_once 'TicketEvolution/Webservice/Exception.php';
             throw new TicketEvolution_Webservice_Exception(
                 'An error occurred sending request. Status code: '
                 . $response->getStatus()
@@ -2975,10 +2914,6 @@ class TicketEvolution_Webservice
         $response = $client->restPost($this->_apiPrefix . $endPoint, $options);
 
         if ($response->isError()) {
-            /**
-             * @see TicketEvolution_Webservice_Exception
-             */
-            require_once 'TicketEvolution/Webservice/Exception.php';
             throw new TicketEvolution_Webservice_Exception(
                 'An error occurred sending request. Status code: '
                 . $response->getStatus()
@@ -3252,10 +3187,6 @@ class TicketEvolution_Webservice
     {
         $trimmedQuery = trim($query);
         if (empty ($trimmedQuery)) {
-            /**
-             * @see TicketEvolution_Webservice_Exception
-             */
-            require_once 'TicketEvolution/Webservice/Exception.php';
             throw new TicketEvolution_Webservice_Exception(
                 'You must provide a non-empty query string'
             );
@@ -3531,16 +3462,8 @@ class TicketEvolution_Webservice
     public function getRestClient()
     {
         if ($this->_rest === null) {
-            /**
-             * @see Zend_Rest_Client
-             */
-            require_once 'Zend/Rest/Client.php';
             $this->_rest = new Zend_Rest_Client();
 
-            /**
-             * @see Zend_Http_Client
-             */
-            require_once 'Zend/Http/Client.php';
             $httpClient = new Zend_Http_Client(
                 $this->_baseUri,
                 array(
@@ -3574,7 +3497,6 @@ class TicketEvolution_Webservice
              *
              * @see Zend_Http_Client_Adapter_Socket
              */
-            require_once 'Zend/Http/Client/Adapter/Socket.php';
             $adapter = new Zend_Http_Client_Adapter_Socket();
 
             $adapterConfig = array (
@@ -3668,11 +3590,6 @@ class TicketEvolution_Webservice
     {
         $signature = self::buildRawSignature($baseUri, $action, $endPoint, $options);
 
-        /**
-         * @see Zend_Crypt_Hmac
-         */
-        require_once 'Zend/Crypt/Hmac.php';
-
         return base64_encode(
             Zend_Crypt_Hmac::compute($secretKey, 'sha256', $signature, Zend_Crypt_Hmac::BINARY)
         );
@@ -3738,10 +3655,6 @@ class TicketEvolution_Webservice
 
 
         if ($response->isError()) {
-            /**
-             * @see TicketEvolution_Webservice_Exception
-             */
-            require_once 'TicketEvolution/Webservice/Exception.php';
             throw new TicketEvolution_Webservice_Exception(
                 'An error occurred sending request. Status code: '
                 . $response->getStatus()
@@ -3768,10 +3681,6 @@ class TicketEvolution_Webservice
                     return $decodedJson;
                 }
 
-                /**
-                 * @see TicketEvolution_Webservice_ResultSet
-                 */
-                require_once 'TicketEvolution/Webservice/ResultSet.php';
                 return new TicketEvolution_Webservice_ResultSet($decodedJson);
         }
 
@@ -3791,10 +3700,6 @@ class TicketEvolution_Webservice
         $decodedJson = json_decode($string);
 
         if (is_null($decodedJson)) {
-            /**
-             * @see TicketEvolution_Webservice_Exception
-             */
-            require_once 'TicketEvolution/Webservice/Exception.php';
             throw new TicketEvolution_Webservice_Exception(
                 'An error occurred decoding the JSON received: ' . json_last_error()
             );

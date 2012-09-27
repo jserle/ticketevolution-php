@@ -22,10 +22,6 @@
  * @license     https://github.com/ticketevolution/ticketevolution-php/blob/master/LICENSE.txt     New BSD License
  */
 
-/**
- * @see Zend_Db_Table_Abstract
- */
-require_once 'Zend/Db/Table/Abstract.php';
 
 /**
  * @category    TicketEvolution
@@ -190,11 +186,6 @@ class TicketEvolution_Db_Table_Abstract extends Zend_Db_Table_Abstract
      */
     public function getByParameters($params, $limit=null, $orderBy=null)
     {
-        /**
-         * @see Zend_Date
-         */
-        require_once 'Zend/Date.php';
-
         if (!is_array($params) && !is_array($this->_primary)) {
             // Assume this is a single Id and find it
             $row = $this->find((int)$params);
@@ -243,7 +234,6 @@ class TicketEvolution_Db_Table_Abstract extends Zend_Db_Table_Abstract
                 $results = $this->fetchAll($select);
             }
         } catch(Exception $e) {
-            require_once 'TicketEvolution/Db/Table/Exception.php';
             throw new TicketEvolution_Db_Table_Exception($e);
         }
         return $results;
@@ -261,10 +251,6 @@ class TicketEvolution_Db_Table_Abstract extends Zend_Db_Table_Abstract
     {
         // Verify that parameters are in an array.
         if (!is_array($params)) {
-            /**
-             * @see TicketEvolution_Db_Exception
-             */
-            require_once 'TicketEvolution/Db/Table/Exception.php';
             throw new TicketEvolution_Db_Table_Exception('Query parameters must be in an array');
         }
 
