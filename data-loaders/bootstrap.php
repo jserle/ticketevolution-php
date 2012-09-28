@@ -43,17 +43,17 @@ require_once 'config.php';
  * Set up autoloading
  */
 require_once 'Zend/Loader/Autoloader.php';
-$autoloader = Zend_Loader_Autoloader::getInstance();
+$autoloader = \Zend_Loader_Autoloader::getInstance();
 $autoloader->registerNamespace('Zend_');
-$autoloader->registerNamespace('TicketEvolution_');
+$autoloader->registerNamespace('TicketEvolution\\');
 $autoloader->setFallbackAutoloader(true);
 
 
 /**
  * Put the config data into registry
  */
-$config = new Zend_Config($dlConfig, true);
-$registry = Zend_Registry::getInstance();
+$config = new \Zend_Config($dlConfig, true);
+$registry = \Zend_Registry::getInstance();
 $registry->set('config', $config);
 
 
@@ -62,5 +62,5 @@ $registry->set('config', $config);
  */
 $regConfig = $registry->get('config');
 $dbConfig = $regConfig->database;
-$db = Zend_Db::factory($dbConfig);
-Zend_Db_Table::setDefaultAdapter($db);
+$db = \Zend_Db::factory($dbConfig);
+\Zend_Db_Table::setDefaultAdapter($db);

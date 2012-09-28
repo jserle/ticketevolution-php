@@ -14,7 +14,8 @@
  * to license@teamonetickets.com so we can send you a copy immediately.
  *
  * @category    TicketEvolution
- * @package     TicketEvolution\Db
+ * @package     TicketEvolution\Webservice\ResultSet
+ * @subpackage  Filter
  * @author      J Cobb <j@teamonetickets.com>
  * @author      Jeff Churchill <jeff@teamonetickets.com>
  * @copyright   Copyright (c) 2012 Team One Tickets & Sports Tours, Inc. (http://www.teamonetickets.com)
@@ -22,15 +23,24 @@
  */
 
 
-namespace TicketEvolution\Db;
+namespace TicketEvolution\Webservice\ResultSet\Filter;
 
 
 /**
  * @category    TicketEvolution
- * @package     TicketEvolution\Db
+ * @package     TicketEvolution\Webservice\ResultSet
+ * @subpackage  Filter
  * @copyright   Copyright (c) 2012 Team One Tickets & Sports Tours, Inc. (http://www.teamonetickets.com)
  * @license     https://github.com/ticketevolution/ticketevolution-php/blob/master/LICENSE.txt     New BSD License
  */
-class Exception extends \TicketEvolution\Exception
+abstract class AbstractFilter extends \FilterIterator
+    implements \Countable
 {
+    /**
+     * By default FilterIterators are not Countable using count(), you have to
+     * use iterator_count(). Implement Countable for convenience.
+     */
+    public function count() {
+        return iterator_count($this);
+    }
 }

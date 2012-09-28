@@ -14,20 +14,24 @@
  * to license@teamonetickets.com so we can send you a copy immediately.
  *
  * @category    TicketEvolution
- * @package     TicketEvolution_DateInterval
+ * @package     TicketEvolution\DateInterval
  * @author      J Cobb <j@teamonetickets.com>
  * @author      Jeff Churchill <jeff@teamonetickets.com>
  * @copyright   Copyright (c) 2012 Team One Tickets & Sports Tours, Inc. (http://www.teamonetickets.com)
  * @license     https://github.com/ticketevolution/ticketevolution-php/blob/master/LICENSE.txt     New BSD License
  */
 
+
+namespace TicketEvolution;
+
+
 /**
  * @category    TicketEvolution
- * @package     TicketEvolution_DateInterval
+ * @package     TicketEvolution\DateInterval
  * @copyright   Copyright (c) 2012 Team One Tickets & Sports Tours, Inc. (http://www.teamonetickets.com)
  * @license     https://github.com/ticketevolution/ticketevolution-php/blob/master/LICENSE.txt     New BSD License
  */
-class TicketEvolution_DateInterval extends DateInterval
+class DateInterval extends \DateInterval
 {
     /**
      * Creates a TicketEvolution_DateInterval from a DateInterval instance.

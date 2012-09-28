@@ -75,7 +75,7 @@ require_once 'bootstrap.php';
 		    <p>These “DataLoader” scripts can be used to populate local database tables with a cache of the Ticket Evolution data. If you choose to do this then you should be sure to run each of these scripts at least daily. We suggest adding them to your <code>crontab</code> on your server.</p>
 
             <?php
-                $table = new TicketEvolution_Db_Table_DataLoaderStatus();
+                $table = new TicketEvolution\Db\Table\DataLoaderStatus();
 
                 $scripts = array(
                     'brokerages'        => array(
@@ -136,7 +136,7 @@ require_once 'bootstrap.php';
                         ;
                         if (!empty($row)) {
                             $dateLastRun = new DateTime($row->lastRun);
-                            echo '<span class="date">' . $dateLastRun->format(TicketEvolution_DateTime::DATE_FULL_US) . '</span> <span class="time">' . $dateLastRun->format('g:i:s a') . '</span>';
+                            echo '<span class="date">' . $dateLastRun->format(TicketEvolution\DateTime::DATE_FULL_US) . '</span> <span class="time">' . $dateLastRun->format('g:i:s a') . '</span>';
                         } else {
                             echo 'Not yet run';
                         }

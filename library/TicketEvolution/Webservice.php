@@ -14,7 +14,7 @@
  * to license@teamonetickets.com so we can send you a copy immediately.
  *
  * @category    TicketEvolution
- * @package     TicketEvolution_Webservice
+ * @package     TicketEvolution\Webservice
  * @author      J Cobb <j@teamonetickets.com>
  * @author      Jeff Churchill <jeff@teamonetickets.com>
  * @copyright   Copyright (c) 2012 Team One Tickets & Sports Tours, Inc. (http://www.teamonetickets.com)
@@ -22,14 +22,17 @@
  */
 
 
+namespace TicketEvolution;
+
+
 /**
  * @category    TicketEvolution
- * @package     TicketEvolution_Webservice
+ * @package     TicketEvolution\Webservice
  * @copyright   Copyright (c) 2012 Team One Tickets & Sports Tours, Inc. (http://www.teamonetickets.com)
  * @license     https://github.com/ticketevolution/ticketevolution-php/blob/master/LICENSE.txt     New BSD License
  * @link        http://developer.ticketevolution.com/
  */
-class TicketEvolution_Webservice
+class Webservice
 {
     /**
      * Ticket Evolution API Token
@@ -68,7 +71,7 @@ class TicketEvolution_Webservice
     /**
      * Reference to REST client object
      *
-     * @var Zend_Rest_Client
+     * @var \Zend_Rest_Client
      */
     protected $_rest = null;
 
@@ -83,9 +86,9 @@ class TicketEvolution_Webservice
 
     /**
      * Defines how the data is returned.
-     *  resultset   = Default. An iterable TicketEvolution_Webservice_Resultset object
-     *  json        = The JSON received with no conversion
-     *  decodedjson = First performs a decode_json()
+     * * resultset   = Default. An iterable TicketEvolution\Webservice\Resultset object
+     * * json        = The JSON received with no conversion
+     * * decodedjson = First performs a decode_json()
      *
      * @var string [resultset,json,decodedjson]
      */
@@ -95,13 +98,13 @@ class TicketEvolution_Webservice
     /**
      * Constructs a new Ticket Evolution Web Services Client
      *
-     * @param  mixed $config  An array or Zend_Config object with adapter parameters.
-     * @throws TicketEvolution_Webservice_Exception
-     * @return TicketEvolution_Webservice
+     * @param  mixed $config  An array or \Zend_Config object with adapter parameters.
+     * @throws Webservice\Exception
+     * @return TicketEvolution\Webservice
      */
     public function __construct($config)
     {
-        if ($config instanceof Zend_Config) {
+        if ($config instanceof \Zend_Config) {
             $config = $config->toArray();
         }
 
@@ -109,8 +112,8 @@ class TicketEvolution_Webservice
          * Verify that parameters are in an array.
          */
         if (!is_array($config)) {
-            throw new TicketEvolution_Webservice_Exception(
-                'Parameters must be in an array or a Zend_Config object'
+            throw new namespace\Exception(
+                'Parameters must be in an array or a \Zend_Config object'
             );
         }
 
@@ -118,7 +121,7 @@ class TicketEvolution_Webservice
          * Verify that an API token has been specified.
          */
         if (!is_string($config['apiToken']) || empty($config['apiToken'])) {
-            throw new TicketEvolution_Webservice_Exception(
+            throw new namespace\Exception(
                 'API token must be specified in a string'
             );
         }
@@ -127,7 +130,7 @@ class TicketEvolution_Webservice
          * Verify that an API secret key has been specified.
          */
         if (!is_string($config['secretKey']) || empty($config['secretKey'])) {
-            throw new TicketEvolution_Webservice_Exception(
+            throw new namespace\Exception(
                 'Secret key must be specified in a string'
             );
         }
@@ -183,8 +186,8 @@ class TicketEvolution_Webservice
      * List Brokerages
      *
      * @param  array $options Options to use for the search query
-     * @throws TicketEvolution_Webservice_Exception
-     * @return TicketEvolution_Webservice_ResultSet
+     * @throws Webservice\Exception
+     * @return TicketEvolution\Webservice_ResultSet
      * @link http://developer.ticketevolution.com/endpoints/v8brokerages#list
      */
     public function listBrokerages(array $options)
@@ -242,7 +245,7 @@ class TicketEvolution_Webservice
      * Get a single brokerage by Id
      *
      * @param  int $id The brokerage ID
-     * @throws TicketEvolution_Webservice_Exception
+     * @throws Webservice\Exception
      * @return stdClass
      * @link http://developer.ticketevolution.com/endpoints/v8brokerages#show
      */
@@ -300,15 +303,15 @@ class TicketEvolution_Webservice
      *
      * @param  string $query The query string
      * @param  array $options Options to use for the search query
-     * @throws TicketEvolution_Webservice_Exception
-     * @return TicketEvolution_Webservice_ResultSet
+     * @throws Webservice\Exception
+     * @return TicketEvolution\Webservice_ResultSet
      * @link http://developer.ticketevolution.com/endpoints/v8brokerages#search
      */
     public function searchBrokerages($query, array $options)
     {
         $trimmedQuery = trim($query);
         if (empty ($trimmedQuery)) {
-            throw new TicketEvolution_Webservice_Exception(
+            throw new namespace\Exception(
                 'You must provide a non-empty query string'
             );
         }
@@ -347,8 +350,8 @@ class TicketEvolution_Webservice
      * List Clients
      *
      * @param  array $options Options to use for the search query
-     * @throws TicketEvolution_Webservice_Exception
-     * @return TicketEvolution_Webservice_ResultSet
+     * @throws Webservice\Exception
+     * @return TicketEvolution\Webservice_ResultSet
      * @link http://developer.ticketevolution.com/endpoints/v8clients#list
      */
     public function listClients(array $options)
@@ -386,7 +389,7 @@ class TicketEvolution_Webservice
      * Get a single client by Id
      *
      * @param  int $id The Client ID
-     * @throws TicketEvolution_Webservice_Exception
+     * @throws Webservice\Exception
      * @return stdClass
      * @link http://developer.ticketevolution.com/endpoints/v8clients#show
      */
@@ -424,15 +427,15 @@ class TicketEvolution_Webservice
      *
      * @param  string $query The query string
      * @param  array $options Options to use for the search query
-     * @throws TicketEvolution_Webservice_Exception
-     * @return TicketEvolution_Webservice_ResultSet
+     * @throws Webservice\Exception
+     * @return TicketEvolution\Webservice_ResultSet
      * @link http://developer.ticketevolution.com/endpoints/v8clients#search
      */
     public function searchClients($query, array $options)
     {
         $trimmedQuery = trim($query);
         if (empty ($trimmedQuery)) {
-            throw new TicketEvolution_Webservice_Exception(
+            throw new namespace\Exception(
                 'You must provide a non-empty query string'
             );
         }
@@ -496,7 +499,7 @@ class TicketEvolution_Webservice
      * Create client(s)
      *
      * @param  array $clients Array of client objects
-     * @throws TicketEvolution_Webservice_Exception
+     * @throws Webservice\Exception
      * @return stdClass
      * @link http://developer.ticketevolution.com/endpoints/v8clients#create
      */
@@ -537,7 +540,7 @@ class TicketEvolution_Webservice
      *
      * @param  int $id The client ID to update
      * @param  object $clientDetails Client object structured per API example
-     * @throws TicketEvolution_Webservice_Exception
+     * @throws Webservice\Exception
      * @return stdClass
      * @link http://developer.ticketevolution.com/endpoints/v8clients#update
      */
@@ -575,8 +578,8 @@ class TicketEvolution_Webservice
      * List Client Companies
      *
      * @param  array $options Options to use for the search query
-     * @throws TicketEvolution_Webservice_Exception
-     * @return TicketEvolution_Webservice_ResultSet
+     * @throws Webservice\Exception
+     * @return TicketEvolution\Webservice_ResultSet
      * @link http://developer.ticketevolution.com/endpoints/v8companies#list
      */
     public function listClientCompanies(array $options)
@@ -614,7 +617,7 @@ class TicketEvolution_Webservice
      * Get a single client company by Id
      *
      * @param  int $id The Client Company ID
-     * @throws TicketEvolution_Webservice_Exception
+     * @throws Webservice\Exception
      * @return stdClass
      * @link http://developer.ticketevolution.com/endpoints/v8companies#show
      */
@@ -676,7 +679,7 @@ class TicketEvolution_Webservice
      * Create client companies
      *
      * @param  array $companies Array of objects structured per API example
-     * @throws TicketEvolution_Webservice_Exception
+     * @throws Webservice\Exception
      * @return stdClass
      * @link http://developer.ticketevolution.com/endpoints/v8companies#create
      */
@@ -717,7 +720,7 @@ class TicketEvolution_Webservice
      *
      * @param  int $id The client ID to update
      * @param  object $companyDetails Company object structured per API example
-     * @throws TicketEvolution_Webservice_Exception
+     * @throws Webservice\Exception
      * @return stdClass
      * @link http://developer.ticketevolution.com/endpoints/v8companies#update
      */
@@ -756,8 +759,8 @@ class TicketEvolution_Webservice
      *
      * @param  int $clientId ID of the specific client
      * @param  array $options Options to use for the search query
-     * @throws TicketEvolution_Webservice_Exception
-     * @return TicketEvolution_Webservice_ResultSet
+     * @throws Webservice\Exception
+     * @return TicketEvolution\Webservice_ResultSet
      * @link http://developer.ticketevolution.com/endpoints/v8addresses#list
      */
     public function listClientAddresses($clientId, array $options)
@@ -796,7 +799,7 @@ class TicketEvolution_Webservice
      *
      * @param  int $clientId ID of the specific client
      * @param  int $addressId ID of the specific address
-     * @throws TicketEvolution_Webservice_Exception
+     * @throws Webservice\Exception
      * @return stdClass
      * @link http://developer.ticketevolution.com/endpoints/v8addresses#show
      */
@@ -859,7 +862,7 @@ class TicketEvolution_Webservice
      *
      * @param  int $clientId ID of the specific client
      * @param  array $addresses Array of address objects structured per API example
-     * @throws TicketEvolution_Webservice_Exception
+     * @throws Webservice\Exception
      * @return stdClass
      * @link http://developer.ticketevolution.com/endpoints/v8addresses#create
      */
@@ -901,7 +904,7 @@ class TicketEvolution_Webservice
      * @param  int $clientId ID of the specific client
      * @param  int $addressId ID of the specific address
      * @param  object $address Address object structured per API example
-     * @throws TicketEvolution_Webservice_Exception
+     * @throws Webservice\Exception
      * @return stdClass
      * @link http://developer.ticketevolution.com/endpoints/v8addresses#update
      */
@@ -940,8 +943,8 @@ class TicketEvolution_Webservice
      *
      * @param  int $clientId ID of the specific client
      * @param  array $options Options to use for the search query
-     * @throws TicketEvolution_Webservice_Exception
-     * @return TicketEvolution_Webservice_ResultSet
+     * @throws Webservice\Exception
+     * @return TicketEvolution\Webservice_ResultSet
      * @link http://developer.ticketevolution.com/endpoints/v8phone-numbers#list
      */
     public function listClientPhoneNumbers($clientId, array $options)
@@ -980,7 +983,7 @@ class TicketEvolution_Webservice
      *
      * @param  int $clientId ID of the specific client
      * @param  int $phoneNumberId ID of the specific phone number
-     * @throws TicketEvolution_Webservice_Exception
+     * @throws Webservice\Exception
      * @return stdClass
      * @link http://developer.ticketevolution.com/endpoints/v8phone-numbers#show
      */
@@ -1043,7 +1046,7 @@ class TicketEvolution_Webservice
      *
      * @param  int $clientId ID of the specific client
      * @param  array $phoneNumbers Array of phone numbers objects per API example
-     * @throws TicketEvolution_Webservice_Exception
+     * @throws Webservice\Exception
      * @return stdClass
      * @link http://developer.ticketevolution.com/endpoints/v8phone-numbers#create
      */
@@ -1085,7 +1088,7 @@ class TicketEvolution_Webservice
      * @param  int $clientId ID of the specific client
      * @param  int $phoneNumberId ID of the specific phone number
      * @param  object $phoneNumberDetails Phone number object structured per API example
-     * @throws TicketEvolution_Webservice_Exception
+     * @throws Webservice\Exception
      * @return stdClass
      * @link http://developer.ticketevolution.com/endpoints/v8phone-numbers#update
      */
@@ -1124,8 +1127,8 @@ class TicketEvolution_Webservice
      *
      * @param  int $clientId ID of the specific client
      * @param  array $options Options to use for the search query
-     * @throws TicketEvolution_Webservice_Exception
-     * @return TicketEvolution_Webservice_ResultSet
+     * @throws Webservice\Exception
+     * @return TicketEvolution\Webservice_ResultSet
      * @link http://developer.ticketevolution.com/endpoints/v8email-addresses#list
      */
     public function listClientEmailAddresses($clientId, array $options)
@@ -1164,7 +1167,7 @@ class TicketEvolution_Webservice
      *
      * @param  int $clientId ID of the specific client
      * @param  int $emailAddressId ID of the specific email address
-     * @throws TicketEvolution_Webservice_Exception
+     * @throws Webservice\Exception
      * @return stdClass
      * @link http://developer.ticketevolution.com/endpoints/v8email-addresses#show
      */
@@ -1227,7 +1230,7 @@ class TicketEvolution_Webservice
      *
      * @param  int $clientId ID of the specific client
      * @param  array $emailAddresses Array of email address objects structured per API example
-     * @throws TicketEvolution_Webservice_Exception
+     * @throws Webservice\Exception
      * @return stdClass
      * @link http://developer.ticketevolution.com/endpoints/v8email-addresses#create
      */
@@ -1269,7 +1272,7 @@ class TicketEvolution_Webservice
      * @param  int $clientId ID of the specific client
      * @param  int $emailAddressId ID of the specific email address
      * @param  object $emailAddressDetails Client object structured per API example
-     * @throws TicketEvolution_Webservice_Exception
+     * @throws Webservice\Exception
      * @return stdClass
      * @link http://developer.ticketevolution.com/endpoints/v8email-addresses#update
      */
@@ -1308,8 +1311,8 @@ class TicketEvolution_Webservice
      *
      * @param  int $clientId ID of the specific client
      * @param  array $options Options to use for the search query
-     * @throws TicketEvolution_Webservice_Exception
-     * @return TicketEvolution_Webservice_ResultSet
+     * @throws Webservice\Exception
+     * @return TicketEvolution\Webservice_ResultSet
      * @link http://developer.ticketevolution.com/endpoints/v8credit-cards#list
      */
     public function listClientCreditCards($clientId, array $options)
@@ -1353,7 +1356,7 @@ class TicketEvolution_Webservice
      *
      * @param  int $clientId ID of the specific client
      * @param  int $creditCardId ID of the specific credit card
-     * @throws TicketEvolution_Webservice_Exception
+     * @throws Webservice\Exception
      * @return stdClass
      * @link http://developer.ticketevolution.com/endpoints/v8credit-cards#show
      */
@@ -1421,7 +1424,7 @@ class TicketEvolution_Webservice
      *
      * @param  int $clientId ID of the specific client
      * @param  array $creditCards Array of credit card objects structured per API example
-     * @throws TicketEvolution_Webservice_Exception
+     * @throws Webservice\Exception
      * @return stdClass
      * @link http://developer.ticketevolution.com/endpoints/v8credit-cards#create
      */
@@ -1473,7 +1476,7 @@ class TicketEvolution_Webservice
      * @param  int $clientId ID of the specific client
      * @param  int $creditCardId ID of the specific email address
      * @param  object $creditCardDetails Client object structured per API example
-     * @throws TicketEvolution_Webservice_Exception
+     * @throws Webservice\Exception
      * @return stdClass
      * @link http://developer.ticketevolution.com/endpoints/v8credit-cards#update
      */
@@ -1517,18 +1520,18 @@ class TicketEvolution_Webservice
      * Remove non-numeric characters from credit card number and validate it
      *
      * @param  string $creditCardNumber
-     * @throws TicketEvolution_Webservice_Exception
+     * @throws Webservice\Exception
      * @return string
      */
     protected function _cleanAndValidateCreditCardNumber($creditCardNumber)
     {
         $cleanNumber = preg_replace('/[^0-9]/', '', $creditCardNumber);
 
-        $valid = new Zend_Validate_CreditCard();
+        $valid = new \Zend_Validate_CreditCard();
         if ($valid->isValid($cleanNumber)) {
             return $cleanNumber;
         } else {
-            throw new TicketEvolution_Webservice_Exception(
+            throw new namespace\Exception(
                 'The credit card provided is not a valid credit card number'
             );
         }
@@ -1540,8 +1543,8 @@ class TicketEvolution_Webservice
      * List Offices for a Brokerage
      *
      * @param  array $options Options to use
-     * @throws TicketEvolution_Webservice_Exception
-     * @return TicketEvolution_Webservice_ResultSet
+     * @throws Webservice\Exception
+     * @return TicketEvolution\Webservice_ResultSet
      * @link http://developer.ticketevolution.com/endpoints/v8offices#list
      */
     public function listOffices(array $options)
@@ -1579,7 +1582,7 @@ class TicketEvolution_Webservice
      * Get a single office by Id
      *
      * @param  int $id
-     * @throws TicketEvolution_Webservice_Exception
+     * @throws Webservice\Exception
      * @return stdClass
      * @link http://developer.ticketevolution.com/endpoints/v8offices#show
      */
@@ -1617,15 +1620,15 @@ class TicketEvolution_Webservice
      *
      * @param  string $query
      * @param  array $options Options to use for the search query
-     * @throws TicketEvolution_Webservice_Exception
-     * @return TicketEvolution_Webservice_ResultSet
+     * @throws Webservice\Exception
+     * @return TicketEvolution\Webservice_ResultSet
      * @link http://developer.ticketevolution.com/endpoints/v8offices#search
      */
     public function searchOffices($query, array $options)
     {
         $trimmedQuery = trim($query);
         if (empty ($trimmedQuery)) {
-            throw new TicketEvolution_Webservice_Exception(
+            throw new namespace\Exception(
                 'You must provide a non-empty query string'
             );
         }
@@ -1664,8 +1667,8 @@ class TicketEvolution_Webservice
      * List Users for a Brokerage Office
      *
      * @param  array $options Options to use for the search query
-     * @throws TicketEvolution_Webservice_Exception
-     * @return TicketEvolution_Webservice_ResultSet
+     * @throws Webservice\Exception
+     * @return TicketEvolution\Webservice_ResultSet
      * @link http://developer.ticketevolution.com/endpoints/v8users#list
      */
     public function listUsers(array $options)
@@ -1703,7 +1706,7 @@ class TicketEvolution_Webservice
      * Get a single user by Id
      *
      * @param  int $id
-     * @throws TicketEvolution_Webservice_Exception
+     * @throws Webservice\Exception
      * @return stdClass
      * @link http://developer.ticketevolution.com/endpoints/v8users#show
      */
@@ -1741,15 +1744,15 @@ class TicketEvolution_Webservice
      *
      * @param  string $query
      * @param  array $options Options to use for the search query
-     * @throws TicketEvolution_Webservice_Exception
-     * @return TicketEvolution_Webservice_ResultSet
+     * @throws Webservice\Exception
+     * @return TicketEvolution\Webservice_ResultSet
      * @link http://developer.ticketevolution.com/endpoints/v8users#search
      */
     public function searchUsers($query, array $options)
     {
         $trimmedQuery = trim($query);
         if (empty ($trimmedQuery)) {
-            throw new TicketEvolution_Webservice_Exception(
+            throw new namespace\Exception(
                 'You must provide a non-empty query string'
             );
         }
@@ -1788,8 +1791,8 @@ class TicketEvolution_Webservice
      * List Active Categories
      *
      * @param  array $options Options to use for the search query
-     * @throws TicketEvolution_Webservice_Exception
-     * @return TicketEvolution_Webservice_ResultSet
+     * @throws Webservice\Exception
+     * @return TicketEvolution\Webservice_ResultSet
      * @link http://developer.ticketevolution.com/endpoints/v8categories#list
      */
     public function listCategories(array $options)
@@ -1827,8 +1830,8 @@ class TicketEvolution_Webservice
      * List Categories that have been deleted
      *
      * @param  array $options Options to use for the search query
-     * @throws TicketEvolution_Webservice_Exception
-     * @return TicketEvolution_Webservice_ResultSet
+     * @throws Webservice\Exception
+     * @return TicketEvolution\Webservice_ResultSet
      * @link http://developer.ticketevolution.com/endpoints/v8categories#deleted
      */
     public function listCategoriesDeleted(array $options)
@@ -1866,7 +1869,7 @@ class TicketEvolution_Webservice
      * Get a single category by Id
      *
      * @param  int $id
-     * @throws TicketEvolution_Webservice_Exception
+     * @throws Webservice\Exception
      * @return stdClass
      * @link http://developer.ticketevolution.com/endpoints/v8categories#show
      */
@@ -1903,8 +1906,8 @@ class TicketEvolution_Webservice
      * List Active Events
      *
      * @param  array $options Options to use for the search query
-     * @throws TicketEvolution_Webservice_Exception
-     * @return TicketEvolution_Webservice_ResultSet
+     * @throws Webservice\Exception
+     * @return TicketEvolution\Webservice_ResultSet
      * @link http://developer.ticketevolution.com/endpoints/v8events#list
      */
     public function listEvents(array $options)
@@ -1942,8 +1945,8 @@ class TicketEvolution_Webservice
      * List Events that have been deleted
      *
      * @param  array $options Options to use for the search query
-     * @throws TicketEvolution_Webservice_Exception
-     * @return TicketEvolution_Webservice_ResultSet
+     * @throws Webservice\Exception
+     * @return TicketEvolution\Webservice_ResultSet
      * @link http://developer.ticketevolution.com/endpoints/v8events#deleted
      */
     public function listEventsDeleted(array $options)
@@ -1981,7 +1984,7 @@ class TicketEvolution_Webservice
      * Get a single event by Id
      *
      * @param  int $id
-     * @throws TicketEvolution_Webservice_Exception
+     * @throws Webservice\Exception
      * @return stdClass
      * @link http://developer.ticketevolution.com/endpoints/v8events#show
      */
@@ -2018,8 +2021,8 @@ class TicketEvolution_Webservice
      * List Active Performers
      *
      * @param  array $options Options to use for the search query
-     * @throws TicketEvolution_Webservice_Exception
-     * @return TicketEvolution_Webservice_ResultSet
+     * @throws Webservice\Exception
+     * @return TicketEvolution\Webservice_ResultSet
      * @link http://developer.ticketevolution.com/endpoints/v8performers#list
      */
     public function listPerformers(array $options)
@@ -2057,8 +2060,8 @@ class TicketEvolution_Webservice
      * List Performers that have been deleted
      *
      * @param  array $options Options to use for the search query
-     * @throws TicketEvolution_Webservice_Exception
-     * @return TicketEvolution_Webservice_ResultSet
+     * @throws Webservice\Exception
+     * @return TicketEvolution\Webservice_ResultSet
      * @link http://developer.ticketevolution.com/endpoints/v8performers#deleted
      */
     public function listPerformersDeleted(array $options)
@@ -2096,7 +2099,7 @@ class TicketEvolution_Webservice
      * Get a single Performer by Id
      *
      * @param  int $id
-     * @throws TicketEvolution_Webservice_Exception
+     * @throws Webservice\Exception
      * @return stdClass
      * @link http://developer.ticketevolution.com/endpoints/v8performers#show
      */
@@ -2134,15 +2137,15 @@ class TicketEvolution_Webservice
      *
      * @param  string $query
      * @param  array $options Options to use for the search query
-     * @throws TicketEvolution_Webservice_Exception
-     * @return TicketEvolution_Webservice_ResultSet
+     * @throws Webservice\Exception
+     * @return TicketEvolution\Webservice_ResultSet
      * @link http://developer.ticketevolution.com/endpoints/v8performers#search
      */
     public function searchPerformers($query, array $options)
     {
         $trimmedQuery = trim($query);
         if (empty ($trimmedQuery)) {
-            throw new TicketEvolution_Webservice_Exception(
+            throw new namespace\Exception(
                 'You must provide a non-empty query string'
             );
         }
@@ -2184,15 +2187,15 @@ class TicketEvolution_Webservice
      *
      * @param  string $query
      * @param  array $options Options to use for the search query
-     * @throws TicketEvolution_Webservice_Exception
-     * @return TicketEvolution_Webservice_ResultSet
+     * @throws Webservice\Exception
+     * @return TicketEvolution\Webservice_ResultSet
      * @link http://developer.ticketevolution.com/endpoints/v8search#list
      */
     public function search($query, array $options)
     {
         $trimmedQuery = trim($query);
         if (empty ($trimmedQuery)) {
-            throw new TicketEvolution_Webservice_Exception(
+            throw new namespace\Exception(
                 'You must provide a non-empty query string'
             );
         }
@@ -2231,8 +2234,8 @@ class TicketEvolution_Webservice
      * List Active Venues
      *
      * @param  array $options Options to use for the search query
-     * @throws TicketEvolution_Webservice_Exception
-     * @return TicketEvolution_Webservice_ResultSet
+     * @throws Webservice\Exception
+     * @return TicketEvolution\Webservice_ResultSet
      * @link http://developer.ticketevolution.com/endpoints/v8venues#list
      */
     public function listVenues(array $options)
@@ -2270,8 +2273,8 @@ class TicketEvolution_Webservice
      * List Venues that have been deleted
      *
      * @param  array $options Options to use for the search query
-     * @throws TicketEvolution_Webservice_Exception
-     * @return TicketEvolution_Webservice_ResultSet
+     * @throws Webservice\Exception
+     * @return TicketEvolution\Webservice_ResultSet
      * @link http://developer.ticketevolution.com/endpoints/v8venues#deleted
      */
     public function listVenuesDeleted(array $options)
@@ -2309,7 +2312,7 @@ class TicketEvolution_Webservice
      * Get a single Venue by Id
      *
      * @param  int $id
-     * @throws TicketEvolution_Webservice_Exception
+     * @throws Webservice\Exception
      * @return stdClass
      * @link http://developer.ticketevolution.com/endpoints/v8venues#show
      */
@@ -2347,15 +2350,15 @@ class TicketEvolution_Webservice
      *
      * @param  string $query
      * @param  array $options Options to use for the search query
-     * @throws TicketEvolution_Webservice_Exception
-     * @return TicketEvolution_Webservice_ResultSet
+     * @throws Webservice\Exception
+     * @return TicketEvolution\Webservice_ResultSet
      * @link http://developer.ticketevolution.com/endpoints/v8venues#search
      */
     public function searchVenues($query, array $options)
     {
         $trimmedQuery = trim($query);
         if (empty ($trimmedQuery)) {
-            throw new TicketEvolution_Webservice_Exception(
+            throw new namespace\Exception(
                 'You must provide a non-empty query string'
             );
         }
@@ -2394,8 +2397,8 @@ class TicketEvolution_Webservice
      * List Configurations
      *
      * @param  array $options Options to use for the search query
-     * @throws TicketEvolution_Webservice_Exception
-     * @return TicketEvolution_Webservice_ResultSet
+     * @throws Webservice\Exception
+     * @return TicketEvolution\Webservice_ResultSet
      * @link http://developer.ticketevolution.com/endpoints/v8configurations#list
      */
     public function listConfigurations(array $options)
@@ -2433,7 +2436,7 @@ class TicketEvolution_Webservice
      * Get a single Configuration by Id
      *
      * @param  int $id
-     * @throws TicketEvolution_Webservice_Exception
+     * @throws Webservice\Exception
      * @return stdClass
      * @link http://developer.ticketevolution.com/endpoints/v8configurations#show
      */
@@ -2470,14 +2473,14 @@ class TicketEvolution_Webservice
      * List Ticket Groups
      *
      * @param  array $options Options to use for the search query
-     * @throws TicketEvolution_Webservice_Exception
-     * @return TicketEvolution_Webservice_ResultSet
+     * @throws Webservice\Exception
+     * @return TicketEvolution\Webservice_ResultSet
      * @link http://developer.ticketevolution.com/endpoints/v8ticket-groups#list
      */
     public function listTicketGroups(array $options)
     {
         if (!isset($options['event_id'])) {
-            throw new TicketEvolution_Webservice_Exception(
+            throw new namespace\Exception(
                 '"event_id" is a required parameter'
             );
         }
@@ -2512,7 +2515,7 @@ class TicketEvolution_Webservice
      * Get a single Ticket by Id Group
      *
      * @param  int $id
-     * @throws TicketEvolution_Webservice_Exception
+     * @throws Webservice\Exception
      * @return stdClass
      * @link http://developer.ticketevolution.com/endpoints/v8ticket-groups#show
      */
@@ -2549,8 +2552,8 @@ class TicketEvolution_Webservice
      * List Orders
      *
      * @param  array $options Options to use for the search query
-     * @throws TicketEvolution_Webservice_Exception
-     * @return TicketEvolution_Webservice_ResultSet
+     * @throws Webservice\Exception
+     * @return TicketEvolution\Webservice_ResultSet
      * @link http://developer.ticketevolution.com/endpoints/v8orders#list
      */
     public function listOrders(array $options)
@@ -2588,7 +2591,7 @@ class TicketEvolution_Webservice
      * Get a single order by Id
      *
      * @param  int $id
-     * @throws TicketEvolution_Webservice_Exception
+     * @throws Webservice\Exception
      * @return stdClass
      * @link http://developer.ticketevolution.com/endpoints/v8orders#show
      */
@@ -2651,7 +2654,7 @@ class TicketEvolution_Webservice
      *
      * @param  array $orders Array of order objects as defined by API
      * @param bool $fulfillment Whether this is a fulfillment order or not
-     * @throws TicketEvolution_Webservice_Exception
+     * @throws Webservice\Exception
      * @return stdClass
      * @link http://developer.ticketevolution.com/endpoints/v8orders#create_client_order
      */
@@ -2721,7 +2724,7 @@ class TicketEvolution_Webservice
      * Utility method that calls createOrders()
      *
      * @param  array $order Array of order objects.
-     * @throws TicketEvolution_Webservice_Exception
+     * @throws Webservice\Exception
      * @return stdClass
      * @link http://developer.ticketevolution.com/endpoints/v8orders#create_fulfillment_order
      */
@@ -2736,7 +2739,7 @@ class TicketEvolution_Webservice
      *
      * @param  int $orderId ID of the specific order
      * @param  object $orderDetails Order object structured per API example
-     * @throws TicketEvolution_Webservice_Exception
+     * @throws Webservice\Exception
      * @return stdClass
      * @link http://developer.ticketevolution.com/endpoints/orders#update
      */
@@ -2775,7 +2778,7 @@ class TicketEvolution_Webservice
      *
      * @param int $orderId ID of the order to accept
      * @param int $userId ID of the user who reviewed and accepts this order
-     * @throws TicketEvolution_Webservice_Exception
+     * @throws Webservice\Exception
      * @return bool
      * @link http://developer.ticketevolution.com/endpoints/v8orders#accept_order
      */
@@ -2806,7 +2809,7 @@ class TicketEvolution_Webservice
         $response = $client->restPost($this->_apiPrefix . $endPoint, $options);
 
         if ($response->isError()) {
-            throw new TicketEvolution_Webservice_Exception(
+            throw new namespace\Exception(
                 'An error occurred sending request. Status code: '
                 . $response->getStatus()
             );
@@ -2821,7 +2824,7 @@ class TicketEvolution_Webservice
      *
      * @param int $orderId ID of the order to accept
      * @param int $userId ID of the user who reviewed and rejects this order
-     * @throws TicketEvolution_Webservice_Exception
+     * @throws Webservice\Exception
      * @return bool
      * @link http://developer.ticketevolution.com/endpoints/v8orders#reject_order
      */
@@ -2869,7 +2872,7 @@ class TicketEvolution_Webservice
         $response = $client->restPost($this->_apiPrefix . $endPoint, $options);
 
         if ($response->isError()) {
-            throw new TicketEvolution_Webservice_Exception(
+            throw new namespace\Exception(
                 'An error occurred sending request. Status code: '
                 . $response->getStatus()
             );
@@ -2884,7 +2887,7 @@ class TicketEvolution_Webservice
      *
      * @param int $orderId ID of the order to accept
      * @param int $userId ID of the user who reviewed and rejects this order
-     * @throws TicketEvolution_Webservice_Exception
+     * @throws Webservice\Exception
      * @return bool
      * @link http://developer.ticketevolution.com/endpoints/v8orders#complete_order
      */
@@ -2914,7 +2917,7 @@ class TicketEvolution_Webservice
         $response = $client->restPost($this->_apiPrefix . $endPoint, $options);
 
         if ($response->isError()) {
-            throw new TicketEvolution_Webservice_Exception(
+            throw new namespace\Exception(
                 'An error occurred sending request. Status code: '
                 . $response->getStatus()
             );
@@ -2928,8 +2931,8 @@ class TicketEvolution_Webservice
      * List Shipments
      *
      * @param  array $options Options to use for the search query
-     * @throws TicketEvolution_Webservice_Exception
-     * @return TicketEvolution_Webservice_ResultSet
+     * @throws Webservice\Exception
+     * @return TicketEvolution\Webservice_ResultSet
      * @link http://developer.ticketevolution.com/endpoints/v8shipments#list
      */
     public function listShipments(array $options)
@@ -2967,7 +2970,7 @@ class TicketEvolution_Webservice
      * Get a single shipment by Id
      *
      * @param  int $id
-     * @throws TicketEvolution_Webservice_Exception
+     * @throws Webservice\Exception
      * @return stdClass
      * @link http://developer.ticketevolution.com/endpoints/v8shipments#show
      */
@@ -3029,7 +3032,7 @@ class TicketEvolution_Webservice
      * Create shipment(s)
      *
      * @param  array $shipments Array of shipment objects
-     * @throws TicketEvolution_Webservice_Exception
+     * @throws Webservice\Exception
      * @return stdClass
      * @link http://developer.ticketevolution.com/endpoints/v8shipments#create
      */
@@ -3069,7 +3072,7 @@ class TicketEvolution_Webservice
      * Update a single shipment
      *
      * @param  object $shipment
-     * @throws TicketEvolution_Webservice_Exception
+     * @throws Webservice\Exception
      * @return stdClass
      * @link http://developer.ticketevolution.com/endpoints/v8shipments#update
      */
@@ -3102,8 +3105,8 @@ class TicketEvolution_Webservice
      * List Quotes
      *
      * @param  array $options Options to use for the search query
-     * @throws TicketEvolution_Webservice_Exception
-     * @return TicketEvolution_Webservice_ResultSet
+     * @throws Webservice\Exception
+     * @return TicketEvolution\Webservice_ResultSet
      * @link http://developer.ticketevolution.com/endpoints/v8quotes#list
      */
     public function listQuotes(array $options)
@@ -3141,7 +3144,7 @@ class TicketEvolution_Webservice
      * Get a single quote by Id
      *
      * @param  int $id
-     * @throws TicketEvolution_Webservice_Exception
+     * @throws Webservice\Exception
      * @return stdClass
      * @link http://developer.ticketevolution.com/endpoints/v8quotes#show
      */
@@ -3179,15 +3182,15 @@ class TicketEvolution_Webservice
      *
      * @param  string $query
      * @param  array $options Options to use for the search query
-     * @throws TicketEvolution_Webservice_Exception
-     * @return TicketEvolution_Webservice_ResultSet
+     * @throws Webservice\Exception
+     * @return TicketEvolution\Webservice_ResultSet
      * @link http://developer.ticketevolution.com/endpoints/v8quotes#search
      */
     public function searchQuotes($query, array $options)
     {
         $trimmedQuery = trim($query);
         if (empty ($trimmedQuery)) {
-            throw new TicketEvolution_Webservice_Exception(
+            throw new namespace\Exception(
                 'You must provide a non-empty query string'
             );
         }
@@ -3226,8 +3229,8 @@ class TicketEvolution_Webservice
      * List EvoPay Accounts
      *
      * @param  array $options Options to use for the search query
-     * @throws TicketEvolution_Webservice_Exception
-     * @return TicketEvolution_Webservice_ResultSet
+     * @throws Webservice\Exception
+     * @return TicketEvolution\Webservice_ResultSet
      * @link http://developer.ticketevolution.com/endpoints/v8accounts#list
      */
     public function listEvoPayAccounts(array $options)
@@ -3265,7 +3268,7 @@ class TicketEvolution_Webservice
      * Get a single EvoPay by Account ID
      *
      * @param  int $id
-     * @throws TicketEvolution_Webservice_Exception
+     * @throws Webservice\Exception
      * @return stdClass
      * @link http://developer.ticketevolution.com/endpoints/v8accounts#show
      */
@@ -3303,8 +3306,8 @@ class TicketEvolution_Webservice
      *
      * @param  int $accountId EvoPay Account ID
      * @param  array $options Options to use for the search query
-     * @throws TicketEvolution_Webservice_Exception
-     * @return TicketEvolution_Webservice_ResultSet
+     * @throws Webservice\Exception
+     * @return TicketEvolution\Webservice_ResultSet
      * @link http://developer.ticketevolution.com/endpoints/v8transactions#list
      */
     public function listEvoPayTransactions($accountId, array $options)
@@ -3343,7 +3346,7 @@ class TicketEvolution_Webservice
      *
      * @param  int $accountId EvoPay Account ID
      * @param  int $transactionId
-     * @throws TicketEvolution_Webservice_Exception
+     * @throws Webservice\Exception
      * @return stdClass
      * @link http://developer.ticketevolution.com/endpoints/v8transactions#show
      */
@@ -3380,8 +3383,8 @@ class TicketEvolution_Webservice
      * List Shipping Settings
      *
      * @param  array $options Options to use for the search query
-     * @throws TicketEvolution_Webservice_Exception
-     * @return TicketEvolution_Webservice_ResultSet
+     * @throws Webservice\Exception
+     * @return TicketEvolution\Webservice_ResultSet
      * @link http://developer.ticketevolution.com/endpoints/v8settings#shipping
      */
     public function listSettingsShipping(array $options)
@@ -3419,8 +3422,8 @@ class TicketEvolution_Webservice
      * List Service Fees Settings
      *
      * @param  array $options Options to use for the search query
-     * @throws TicketEvolution_Webservice_Exception
-     * @return TicketEvolution_Webservice_ResultSet
+     * @throws Webservice\Exception
+     * @return TicketEvolution\Webservice_ResultSet
      * @link http://developer.ticketevolution.com/endpoints/settings#service_fees
      */
     public function listSettingsServiceFees(array $options)
@@ -3457,14 +3460,14 @@ class TicketEvolution_Webservice
     /**
      * Returns a reference to the REST client
      *
-     * @return Zend_Rest_Client
+     * @return \Zend_Rest_Client
      */
     public function getRestClient()
     {
         if ($this->_rest === null) {
-            $this->_rest = new Zend_Rest_Client();
+            $this->_rest = new \Zend_Rest_Client();
 
-            $httpClient = new Zend_Http_Client(
+            $httpClient = new \Zend_Http_Client(
                 $this->_baseUri,
                 array(
                     'keepalive' => $this->_usePersistentConnections
@@ -3495,9 +3498,9 @@ class TicketEvolution_Webservice
             /**
              * Create an adapter object and attach it to the HTTP client
              *
-             * @see Zend_Http_Client_Adapter_Socket
+             * @see \Zend_Http_Client_Adapter_Socket
              */
-            $adapter = new Zend_Http_Client_Adapter_Socket();
+            $adapter = new \Zend_Http_Client_Adapter_Socket();
 
             $adapterConfig = array (
                 'persistent'    => $this->_usePersistentConnections,
@@ -3518,8 +3521,8 @@ class TicketEvolution_Webservice
     /**
      * Set REST client
      *
-     * @param Zend_Rest_Client
-     * @return TicketEvolution_Webservice
+     * @param \Zend_Rest_Client
+     * @return TicketEvolution\Webservice
      */
     public function setRestClient(Zend_Rest_Client $client)
     {
@@ -3591,7 +3594,7 @@ class TicketEvolution_Webservice
         $signature = self::buildRawSignature($baseUri, $action, $endPoint, $options);
 
         return base64_encode(
-            Zend_Crypt_Hmac::compute($secretKey, 'sha256', $signature, Zend_Crypt_Hmac::BINARY)
+            \Zend_Crypt_Hmac::compute($secretKey, 'sha256', $signature, \Zend_Crypt_Hmac::BINARY)
         );
     }
 
@@ -3655,7 +3658,7 @@ class TicketEvolution_Webservice
 
 
         if ($response->isError()) {
-            throw new TicketEvolution_Webservice_Exception(
+            throw new namespace\Exception(
                 'An error occurred sending request. Status code: '
                 . $response->getStatus()
             );
@@ -3681,7 +3684,7 @@ class TicketEvolution_Webservice
                     return $decodedJson;
                 }
 
-                return new TicketEvolution_Webservice_ResultSet($decodedJson);
+                return new Webservice\ResultSet($decodedJson);
         }
 
         return false;
@@ -3700,7 +3703,7 @@ class TicketEvolution_Webservice
         $decodedJson = json_decode($string);
 
         if (is_null($decodedJson)) {
-            throw new TicketEvolution_Webservice_Exception(
+            throw new namespace\Exception(
                 'An error occurred decoding the JSON received: ' . json_last_error()
             );
         }

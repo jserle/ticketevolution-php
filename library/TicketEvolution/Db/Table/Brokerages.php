@@ -14,7 +14,7 @@
  * to license@teamonetickets.com so we can send you a copy immediately.
  *
  * @category    TicketEvolution
- * @package     TicketEvolution_Db
+ * @package     TicketEvolution\Db
  * @subpackage  Table
  * @author      J Cobb <j@teamonetickets.com>
  * @author      Jeff Churchill <jeff@teamonetickets.com>
@@ -23,14 +23,17 @@
  */
 
 
+namespace TicketEvolution\Db\Table;
+
+
 /**
  * @category    TicketEvolution
- * @package     TicketEvolution_Db
+ * @package     TicketEvolution\Db
  * @subpackage  Table
  * @copyright   Copyright (c) 2012 Team One Tickets & Sports Tours, Inc. (http://www.teamonetickets.com)
  * @license     https://github.com/ticketevolution/ticketevolution-php/blob/master/LICENSE.txt     New BSD License
  */
-class TicketEvolution_Db_Table_Brokerages extends TicketEvolution_Db_Table_Abstract
+class Brokerages extends AbstractTable
 {
     /**
      * The table name.
@@ -61,7 +64,7 @@ class TicketEvolution_Db_Table_Brokerages extends TicketEvolution_Db_Table_Abstr
      *
      * @var string
      */
-    //protected $_rowClass = 'TicketEvolution_Db_Table_Row';
+    //protected $_rowClass = '\TicketEvolution\Db\Table\Row';
 
     /**
      * Sets where default column values should be taken from
@@ -79,8 +82,8 @@ class TicketEvolution_Db_Table_Brokerages extends TicketEvolution_Db_Table_Abstr
      * @var array
      */
     protected $_dependentTables = array(
-        'TicketEvolution_Db_Table_Offices',
-        'TicketEvolution_Db_Table_Users',
+        '\TicketEvolution\Db\Table\Offices',
+        '\TicketEvolution\Db\Table\Users',
     );
 
 

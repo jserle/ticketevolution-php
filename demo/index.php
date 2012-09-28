@@ -154,7 +154,7 @@ if (isset($_REQUEST['apiMethod'])) {
     // We'll use the Zend_Config method here
     $config = new Zend_Config($cfg);
 
-    $tevo = new TicketEvolution_Webservice($config->params);
+    $tevo = new TicketEvolution\Webservice($config->params);
 }
 
 ?>
@@ -190,7 +190,7 @@ if (isset($_REQUEST['apiMethod'])) {
 		<div id="main" role="main">
 		    <h1>Demonstration of the Ticket Evolution Framework for PHP with Zend Framework</h1>
 		    <p>This is a quick demo of the Ticket Evolution Framework for PHP with Zend Framework which is used to access the <a href="http://developer.ticketevolution.com/overview">Ticket Evolution Web Services API</a>. <a href="http://framework.zend.com/">Zend Framework</a> is an easy-to-use PHP framework that can be used in whole or in parts regardless of whether you program in MVC or procedural style. Simply make sure that the Zend Framework <code>/library</code> folder is in your PHP <code>include_path</code>.</p>
-		    <p>All of the <code>list*()</code> methods will return a <code>TicketEvolution_Webservice_ResultSet</code> object with can be easily iterated using simple loops. If you prefer PHP’s <a href="http://www.php.net/manual/en/spl.iterators.php">built-in SPL iterators</a> you will be hapy to know that <code>TicketEvolution_Webservice_ResultSet</code> implements <a href="http://www.php.net/manual/en/class.seekableiterator.php">SeekableIterator</a>.</p>
+		    <p>All of the <code>list*()</code> methods will return a <code>TicketEvolution\Webservice_ResultSet</code> object with can be easily iterated using simple loops. If you prefer PHP’s <a href="http://www.php.net/manual/en/spl.iterators.php">built-in SPL iterators</a> you will be hapy to know that <code>TicketEvolution\Webservice_ResultSet</code> implements <a href="http://www.php.net/manual/en/class.seekableiterator.php">SeekableIterator</a>.</p>
 
 		    <?php
 		        if (isset($input)) {
@@ -232,7 +232,7 @@ if (isset($_REQUEST['apiMethod'])) {
                     echo ');' . PHP_EOL
                        . PHP_EOL
                        . '/**' . PHP_EOL
-                       . ' * Create a Zend_Config object to pass to TicketEvolution_Webservice' . PHP_EOL
+                       . ' * Create a Zend_Config object to pass to TicketEvolution\Webservice' . PHP_EOL
                        . ' */' . PHP_EOL
                        . '$config = new Zend_Config($cfg);' . PHP_EOL
                        . PHP_EOL
@@ -254,9 +254,9 @@ if (isset($_REQUEST['apiMethod'])) {
 		               . PHP_EOL
 		               . '/**' . PHP_EOL
 		               . ' * Finished setting up configuration.' . PHP_EOL
-		               . ' * Initialize a TicketEvolution_Webservice object.' . PHP_EOL
+		               . ' * Initialize a TicketEvolution\Webservice object.' . PHP_EOL
 		               . ' */' . PHP_EOL
-		               . '$tevo = new TicketEvolution_Webservice($config->params);' . PHP_EOL
+		               . '$tevo = new TicketEvolution\Webservice($config->params);' . PHP_EOL
 		               . PHP_EOL
 		               . PHP_EOL
 		               . '/**' . PHP_EOL
@@ -268,7 +268,7 @@ if (isset($_REQUEST['apiMethod'])) {
                      * Setup any necessary vars and execute the call
                      */
                     $options = _getOptions($input);
-                    //var_dump($options);
+                    var_dump($options);
 
                     switch ($apiMethod) {
                         case 'listBrokerages' :
@@ -702,6 +702,10 @@ if (isset($_REQUEST['apiMethod'])) {
                         case 'searchVenues' :
                         case 'search' :
                             $queryTerm = $options['q'];
+                            if (!empty($options['types']) && is_array($options['types'])) {
+                                $options['types'] = json_encode($options['types']);
+                            }
+                            var_dump($options);
                             _outputSearchCode($apiMethod, $queryTerm, $options);
                             $results = _doSearch($tevo, $apiMethod, $queryTerm, $options);
                             break;
@@ -1519,7 +1523,7 @@ if (isset($_REQUEST['apiMethod'])) {
 
                     <div class="search">
                         <label for="types">types:</label>
-                        <select name="types" id="types">
+                        <select name="types[]" id="types" multiple="multiple" size="4">
                             <option value="performers">performers</option>
                             <option value="venues">venues</option>
                             <option value="offices">offices</option>
@@ -2349,12 +2353,12 @@ function _outputSearchCode($apiMethod, $queryString, $options)
 /**
  * Utility function for performing show*() calls
  *
- * @param TicketEvolution_Webservice $tevo
+ * @param TicketEvolution\Webservice $tevo
  * @param string $apiMethod
  * @param int $showId
  * @return stdClass
  */
-function _doShow(TicketEvolution_Webservice $tevo, $apiMethod, $showId)
+function _doShow(TicketEvolution\Webservice $tevo, $apiMethod, $showId)
 {
     // Execute the call
     try {
@@ -2374,13 +2378,13 @@ function _doShow(TicketEvolution_Webservice $tevo, $apiMethod, $showId)
 /**
  * Utility function for performing show*() calls
  *
- * @param TicketEvolution_Webservice $tevo
+ * @param TicketEvolution\Webservice $tevo
  * @param string $apiMethod
  * @param int $itemId
  * @param int $showId
  * @return stdClass
  */
-function _doShowById(TicketEvolution_Webservice $tevo, $apiMethod, $itemId, $showId)
+function _doShowById(TicketEvolution\Webservice $tevo, $apiMethod, $itemId, $showId)
 {
     // Execute the call
     try {
@@ -2400,12 +2404,12 @@ function _doShowById(TicketEvolution_Webservice $tevo, $apiMethod, $itemId, $sho
 /**
  * Utility function for performing list*() calls
  *
- * @param TicketEvolution_Webservice $tevo
+ * @param TicketEvolution\Webservice $tevo
  * @param string $apiMethod
  * @param array $options
  * @return stdClass
  */
-function _doList(TicketEvolution_Webservice $tevo, $apiMethod, array $options)
+function _doList(TicketEvolution\Webservice $tevo, $apiMethod, array $options)
 {
     // Execute the call
     try {
@@ -2425,13 +2429,13 @@ function _doList(TicketEvolution_Webservice $tevo, $apiMethod, array $options)
 /**
  * Utility function for performing list*() calls
  *
- * @param TicketEvolution_Webservice $tevo
+ * @param TicketEvolution\Webservice $tevo
  * @param string $apiMethod
  * @param int $listId
  * @param array $options
  * @return stdClass
  */
-function _doListById(TicketEvolution_Webservice $tevo, $apiMethod, $listId, array $options)
+function _doListById(TicketEvolution\Webservice $tevo, $apiMethod, $listId, array $options)
 {
     // Execute the call
     try {
@@ -2451,13 +2455,13 @@ function _doListById(TicketEvolution_Webservice $tevo, $apiMethod, $listId, arra
 /**
  * Utility function for performing search*() calls
  *
- * @param TicketEvolution_Webservice $tevo
+ * @param TicketEvolution\Webservice $tevo
  * @param string $apiMethod
  * @param string $queryString
  * @param array $options
  * @return stdClass
  */
-function _doSearch(TicketEvolution_Webservice $tevo, $apiMethod, $queryString, $options)
+function _doSearch(TicketEvolution\Webservice $tevo, $apiMethod, $queryString, $options)
 {
     // Execute the call
     try {
@@ -2477,12 +2481,12 @@ function _doSearch(TicketEvolution_Webservice $tevo, $apiMethod, $queryString, $
 /**
  * Utility function for performing create*() calls
  *
- * @param TicketEvolution_Webservice $tevo
+ * @param TicketEvolution\Webservice $tevo
  * @param string $apiMethod
  * @param stdClass $properties
  * @return stdClass
  */
-function _doCreate(TicketEvolution_Webservice $tevo, $apiMethod, $properties)
+function _doCreate(TicketEvolution\Webservice $tevo, $apiMethod, $properties)
 {
     // Execute the call
     try {
@@ -2502,13 +2506,13 @@ function _doCreate(TicketEvolution_Webservice $tevo, $apiMethod, $properties)
 /**
  * Utility function for performing create*() calls
  *
- * @param TicketEvolution_Webservice $tevo
+ * @param TicketEvolution\Webservice $tevo
  * @param string $apiMethod
  * @param int $itemId
  * @param array $properties
  * @return stdClass
  */
-function _doCreateById(TicketEvolution_Webservice $tevo, $apiMethod, $itemId, array $properties)
+function _doCreateById(TicketEvolution\Webservice $tevo, $apiMethod, $itemId, array $properties)
 {
     // Execute the call
     try {
@@ -2528,13 +2532,13 @@ function _doCreateById(TicketEvolution_Webservice $tevo, $apiMethod, $itemId, ar
 /**
  * Utility function for performing update*() calls
  *
- * @param TicketEvolution_Webservice $tevo
+ * @param TicketEvolution\Webservice $tevo
  * @param string $apiMethod
  * @param int $updateId
  * @param stdClass $properties
  * @return stdClass
  */
-function _doUpdate(TicketEvolution_Webservice $tevo, $apiMethod, $updateId, $properties)
+function _doUpdate(TicketEvolution\Webservice $tevo, $apiMethod, $updateId, $properties)
 {
     // Execute the call
     try {
@@ -2554,14 +2558,14 @@ function _doUpdate(TicketEvolution_Webservice $tevo, $apiMethod, $updateId, $pro
 /**
  * Utility function for performing update*() calls
  *
- * @param TicketEvolution_Webservice $tevo
+ * @param TicketEvolution\Webservice $tevo
  * @param string $apiMethod
  * @param int $itemId
  * @param int $updateId
  * @param array $properties
  * @return stdClass
  */
-function _doUpdateById(TicketEvolution_Webservice $tevo, $apiMethod, $itemId, $updateId, $properties)
+function _doUpdateById(TicketEvolution\Webservice $tevo, $apiMethod, $itemId, $updateId, $properties)
 {
     // Execute the call
     try {
@@ -2581,14 +2585,14 @@ function _doUpdateById(TicketEvolution_Webservice $tevo, $apiMethod, $itemId, $u
 /**
  * Utility function for performing update*() calls
  *
- * @param TicketEvolution_Webservice $tevo
+ * @param TicketEvolution\Webservice $tevo
  * @param string $apiMethod
  * @param int $itemId
  * @param int $updateId
  * @param array $properties
  * @return stdClass
  */
-function _doOther(TicketEvolution_Webservice $tevo, $apiMethod, $param1, $param2=null, $param3=null)
+function _doOther(TicketEvolution\Webservice $tevo, $apiMethod, $param1, $param2=null, $param3=null)
 {
     // Execute the call
     try {
@@ -2614,7 +2618,7 @@ function _doOther(TicketEvolution_Webservice $tevo, $apiMethod, $param1, $param2
 /**
  * Utility function for returning formatted API request info
  *
- * @param TicketEvolution_Webservice $tevofunction
+ * @param TicketEvolution\Webservice $tevofunction
  * @param string $apiMethod
  * @param bool $isException
  * @return string
@@ -2634,7 +2638,7 @@ function _getRequest($tevo, $apiMethod, $isException=true)
 /**
  * Utility function for returning formatted API response info
  *
- * @param TicketEvolution_Webservice $tevofunction
+ * @param TicketEvolution\Webservice $tevofunction
  * @param string $apiMethod
  * @return string
  */

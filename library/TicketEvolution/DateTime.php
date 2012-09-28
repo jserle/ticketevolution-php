@@ -14,7 +14,7 @@
  * to license@teamonetickets.com so we can send you a copy immediately.
  *
  * @category    TicketEvolution
- * @package     TicketEvolution_DateTime
+ * @package     TicketEvolution\DateTime
  * @author      J Cobb <j@teamonetickets.com>
  * @author      Jeff Churchill <jeff@teamonetickets.com>
  * @copyright   Copyright (c) 2012 Team One Tickets & Sports Tours, Inc. (http://www.teamonetickets.com)
@@ -22,16 +22,19 @@
  */
 
 
+namespace TicketEvolution;
+
+
 /**
  * Extends PHP's DateTime with some handy constants and also allows for easy
  * handling of "TBA" event times.
  *
  * @category    TicketEvolution
- * @package     TicketEvolution_DateTime
+ * @package     TicketEvolution\DateTime
  * @copyright   Copyright (c) 2012 Team One Tickets & Sports Tours, Inc. (http://www.teamonetickets.com)
  * @license     https://github.com/ticketevolution/ticketevolution-php/blob/master/LICENSE.txt     New BSD License
  */
-class TicketEvolution_DateTime extends DateTime
+class DateTime extends \DateTime
 {
     /**
      * These are here for convenience

@@ -14,7 +14,7 @@
  * to license@teamonetickets.com so we can send you a copy immediately.
  *
  * @category    TicketEvolution
- * @package     TicketEvolution_DataLoader
+ * @package     TicketEvolution\DataLoader
  * @author      J Cobb <j@teamonetickets.com>
  * @author      Jeff Churchill <jeff@teamonetickets.com>
  * @copyright   Copyright (c) 2012 Team One Tickets & Sports Tours, Inc. (http://www.teamonetickets.com)
@@ -22,16 +22,19 @@
  */
 
 
+namespace TicketEvolution\DataLoader;
+
+
 /**
- * Extends Zend_Date with some handy constants and also allows for easy handling
+ * Extends \Zend_Date with some handy constants and also allows for easy handling
  * of "TBA" event times.
  *
  * @category    TicketEvolution
- * @package     TicketEvolution_DataLoader
+ * @package     TicketEvolution\DataLoader
  * @copyright   Copyright (c) 2012 Team One Tickets & Sports Tours, Inc. (http://www.teamonetickets.com)
  * @license     https://github.com/ticketevolution/ticketevolution-php/blob/master/LICENSE.txt     New BSD License
  */
-abstract class TicketEvolution_DataLoader_Abstract
+abstract class AbstractDataLoader
 {
     /**
      * Set a variable to record when we started this script. This time
@@ -48,13 +51,13 @@ abstract class TicketEvolution_DataLoader_Abstract
      *
      * @var string
      */
-    protected $_statusTableClass = 'TicketEvolution_Db_Table_DataLoaderStatus';
+    protected $_statusTableClass = '\TicketEvolution\Db\Table\DataLoaderStatus';
 
 
     /**
      * The `dataLoaderStatus` table object
      *
-     * @var Zend_Db_Table
+     * @var \Zend_Db_Table
      */
     protected $_statusTable;
 
@@ -62,7 +65,7 @@ abstract class TicketEvolution_DataLoader_Abstract
     /**
      * The `dataLoaderStatus` table row
      *
-     * @var Zend_Db_Table_Row
+     * @var \Zend_Db_Table_Row
      */
     protected $_statusTableRow;
 
@@ -111,7 +114,7 @@ abstract class TicketEvolution_DataLoader_Abstract
     /**
      * Reference to the data loader object
      *
-     * @var TicketEvolution_DataLoader_Abstract
+     * @var \TicketEvolution\DataLoader\Abstract
      */
     protected $_dataLoader;
 
@@ -133,17 +136,17 @@ abstract class TicketEvolution_DataLoader_Abstract
 
 
     /**
-     * The TicketEvolution_Webservice object
+     * The \TicketEvolution\Webservice object
      *
-     * @var TicketEvolution_Webservice
+     * @var \TicketEvolution\Webservice
      */
     protected $_webService;
 
 
     /**
-     * The Zend_Db_Table subclass for the table to update
+     * The \Zend_Db_Table subclass for the table to update
      *
-     * @var Zend_Db_Table
+     * @var \Zend_Db_Table
      */
     var $tableClass;
 
@@ -151,15 +154,15 @@ abstract class TicketEvolution_DataLoader_Abstract
     /**
      * Reference to the table object to be created from $tableClass
      *
-     * @var Zend_Db_Table
+     * @var \Zend_Db_Table
      */
     protected $_table;
 
 
     /**
-     * Reference to the Zend_Db_Table_Row for each item
+     * Reference to the \Zend_Db_Table_Row for each item
      *
-     * @var Zend_Db_Table_Row
+     * @var \Zend_Db_Table_Row
      */
     protected $_tableRow;
 
@@ -190,13 +193,13 @@ abstract class TicketEvolution_DataLoader_Abstract
      * * showProgress   = (bool) whether or not to output progress
      * * showMemory     = (bool) whether or not to output memory statistics
      *
-     * @param TicketEvolution_Webservice $webService    TicketEvolution_Webservice object to use for API calls
+     * @param \TicketEvolution\Webservice $webService    \TicketEvolution\Webservice object to use for API calls
      * @param array $options    Array of options
      */
-    public function __construct(TicketEvolution_Webservice $webService, array $options=array())
+    public function __construct(\TicketEvolution\Webservice $webService, array $options=array())
     {
         // Set the startTime to now
-        $this->_startTime = new DateTime();
+        $this->_startTime = new \DateTime();
 
         // Reference to the webService object
         $this->_webService = $webService;
@@ -229,9 +232,9 @@ abstract class TicketEvolution_DataLoader_Abstract
          * been added/changed/deleted since then
          */
         if (!empty($options['lastRun'])) {
-            if (!$options['lastRun'] instanceOf DateTime) {
-                if (!$this->_lastRun = new DateTime($options['lastRun'])) {
-                    throw new TicketEvolution_DataLoader_Exception('The $lastRun date you provided appears to be malformed');
+            if (!$options['lastRun'] instanceOf \DateTime) {
+                if (!$this->_lastRun = new \DateTime($options['lastRun'])) {
+                    throw new namespace\Exception('The $lastRun date you provided appears to be malformed');
                 }
             } else {
                 $this->_lastRun = $options['lastRun'];
@@ -239,14 +242,14 @@ abstract class TicketEvolution_DataLoader_Abstract
         } else {
             // The table should have either a previously set value
             // OR a default date of 2010-01-01 for the column
-            $this->_lastRun = new DateTime($this->_statusRow->lastRun);
+            $this->_lastRun = new \DateTime($this->_statusRow->lastRun);
         }
 
         /**
          * Convert $_lastRun to UTC because the API currently ignores the time if it is
          * not specified as UTC. This is not expected behavior and should be fixed soon.
          */
-        $this->_lastRun->setTimezone(new DateTimeZone('UTC'));
+        $this->_lastRun->setTimezone(new \DateTimeZone('UTC'));
 
 
     }
@@ -340,30 +343,25 @@ abstract class TicketEvolution_DataLoader_Abstract
         }
 
 
-   		// Record the DataLoaderStatus
-   		try {
-            // Update `tevoDataLoaderStatus` with current info
-            $this->_statusRow->lastRun = (string) $this->_startTime->format('c');
+        // Update `tevoDataLoaderStatus` with current info
+        $this->_statusRow->lastRun = (string) $this->_startTime->format('c');
 
-            try {
-                $this->_statusRow->save();
-            } catch (Exception $e) {
-                throw new TicketEvolution_DataLoader_Status($e);
-            }
+        try {
+            $this->_statusRow->save();
+        } catch (Exception $e) {
+            throw new namespace\Exception($e);
+        }
 
-            if ($this->_showProgress) {
-                echo '<h1>Finished updating <i>' . $this->endpointState . ' ' . $this->_statusRow->endpoint . '</i></h1>' . PHP_EOL;
-            }
+        if ($this->_showProgress) {
+            echo '<h1>Finished updating <i>' . $this->endpointState . ' ' . $this->_statusRow->endpoint . '</i></h1>' . PHP_EOL;
+        }
 
-            if ($this->_showMemory) {
-                $curMem = new Zend_Measure_Binary(memory_get_usage(true), Zend_Measure_Binary::BYTE);
-                $peakMem = new Zend_Measure_Binary(memory_get_peak_usage(true), Zend_Measure_Binary::BYTE);
-                echo '<h1>Current memory usage at end of script: ' . $curMem->convertTo(Zend_Measure_Binary::MEGABYTE) . '</h1>' . PHP_EOL
-                   . '<h1>PEAK memory usage: ' . $peakMem->convertTo(Zend_Measure_Binary::MEGABYTE) . '</h1>' . PHP_EOL;
-            }
-   		} catch (Exception $e) {
-       		throw new TicketEvolution_DataLoader_Exception('Unable to mark ' . $className . ' as completed');
-   		}
+        if ($this->_showMemory) {
+            $curMem = new \Zend_Measure_Binary(memory_get_usage(true), \Zend_Measure_Binary::BYTE);
+            $peakMem = new \Zend_Measure_Binary(memory_get_peak_usage(true), \Zend_Measure_Binary::BYTE);
+            echo '<h1>Current memory usage at end of script: ' . $curMem->convertTo(\Zend_Measure_Binary::MEGABYTE) . '</h1>' . PHP_EOL
+               . '<h1>PEAK memory usage: ' . $peakMem->convertTo(\Zend_Measure_Binary::MEGABYTE) . '</h1>' . PHP_EOL;
+        }
 
 
     }
@@ -373,14 +371,14 @@ abstract class TicketEvolution_DataLoader_Abstract
      * Perform the API call
      *
      * @param array $options Options for the API call
-     * @return TicketEvolution_Webservice_ResultSet
+     * @return \TicketEvolution\Webservice\ResultSet
      */
     protected function _doApiCall(array $options)
     {
         try {
             return $this->tevo->listBrokerages($options);
         } catch(Exceotion $e) {
-            throw new TicketEvolution_DataLoader_Exception($e);
+            throw new namespace\Exception($e);
         }
     }
 
@@ -411,10 +409,10 @@ abstract class TicketEvolution_DataLoader_Abstract
 
         if ($this->_showMemory) {
             $curMem = memory_get_usage(true);
-            $curMem = new Zend_Measure_Binary(memory_get_usage(true), Zend_Measure_Binary::BYTE);
+            $curMem = new \Zend_Measure_Binary(memory_get_usage(true), \Zend_Measure_Binary::BYTE);
             echo '<h1>Current memory usage after fetching page '
                . $options['page'] . ' of ' . $this->totalPages . ': '
-               . $curMem->convertTo(Zend_Measure_Binary::MEGABYTE)
+               . $curMem->convertTo(\Zend_Measure_Binary::MEGABYTE)
                . '</h1>' . PHP_EOL;
         }
 
@@ -434,10 +432,10 @@ abstract class TicketEvolution_DataLoader_Abstract
         }
 
         if ($this->_showMemory) {
-            $curMem = new Zend_Measure_Binary(memory_get_usage(true), Zend_Measure_Binary::BYTE);
+            $curMem = new \Zend_Measure_Binary(memory_get_usage(true), \Zend_Measure_Binary::BYTE);
             echo '<h1>Current memory usage after database work of page '
                . $options['page'] . ' of ' . $this->totalPages . ': '
-               . $curMem->convertTo(Zend_Measure_Binary::MEGABYTE)
+               . $curMem->convertTo(\Zend_Measure_Binary::MEGABYTE)
                . '</h1>' . PHP_EOL;
         }
 
@@ -464,7 +462,7 @@ abstract class TicketEvolution_DataLoader_Abstract
              * if the specified class cannot be loaded.
              */
             if (!class_exists($this->_tableClass)) {
-                Zend_Loader::loadClass($this->_tableClass);
+                \Zend_Loader::loadClass($this->_tableClass);
             }
 
             /**
@@ -552,7 +550,7 @@ abstract class TicketEvolution_DataLoader_Abstract
                    . '</h1>' . PHP_EOL;
             }
 
-            throw new TicketEvolution_DataLoader_Exception($e);
+            throw new namespace\Exception($e);
         }
     }
 

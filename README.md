@@ -2,6 +2,12 @@
 
 ## RELEASE INFORMATION
 
+### September 28, 2012 v1.9.11
+*This update contains changes that are NOT backwards compatible*
+
+- Added more proper [namespace](http://php.net/manual/en/language.namespaces.rationale.php) support
+- Require autoloading by removing all `require_once` statements for requiring classes
+
 ### September 27, 2012 v1.9.10
 - Remover leftover debug
 

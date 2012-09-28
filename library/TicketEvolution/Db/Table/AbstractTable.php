@@ -14,7 +14,7 @@
  * to license@teamonetickets.com so we can send you a copy immediately.
  *
  * @category    TicketEvolution
- * @package     TicketEvolution_Db
+ * @package     TicketEvolution\Db
  * @subpackage  Table
  * @author      J Cobb <j@teamonetickets.com>
  * @author      Jeff Churchill <jeff@teamonetickets.com>
@@ -23,14 +23,17 @@
  */
 
 
+namespace TicketEvolution\Db\Table;
+
+
 /**
  * @category    TicketEvolution
- * @package     TicketEvolution_Db
+ * @package     TicketEvolution\Db
  * @subpackage  Table
  * @copyright   Copyright (c) 2012 Team One Tickets & Sports Tours, Inc. (http://www.teamonetickets.com)
  * @license     https://github.com/ticketevolution/ticketevolution-php/blob/master/LICENSE.txt     New BSD License
  */
-class TicketEvolution_Db_Table_Abstract extends Zend_Db_Table_Abstract
+class AbstractTable extends \Zend_Db_Table_Abstract
 {
     /**
      * The column that we use to indicate status in boolean form
@@ -44,7 +47,7 @@ class TicketEvolution_Db_Table_Abstract extends Zend_Db_Table_Abstract
      *
      * @var string
      */
-    protected $_rowClass = 'TicketEvolution_Db_Table_Row';
+    protected $_rowClass = '\TicketEvolution\Db\Table\Row';
 
     /**
      * Returns the name of the column we are using to track status
@@ -91,7 +94,7 @@ class TicketEvolution_Db_Table_Abstract extends Zend_Db_Table_Abstract
      */
     protected function _setEmptyFieldsToNull(array &$data)
     {
-        array_walk($data, array('TicketEvolution_Db_Table_Abstract', '_emptyFieldsToNull'));
+        array_walk($data, array('\TicketEvolution\Db\Table\AbstractTable', '_emptyFieldsToNull'));
     }
 
 
@@ -206,8 +209,8 @@ class TicketEvolution_Db_Table_Abstract extends Zend_Db_Table_Abstract
             $column = lcfirst(preg_replace('/^tevo(\w{1})/i', "$1", $column));
             if (is_array($value)) {
                 $select->where($column ." IN (?)", $value);
-            } elseif ($value instanceof Zend_Date) {
-                $select->where($column ." = ?", $value->get(TicketEvolution_Date::MYSQL_DATETIME));
+            } elseif ($value instanceof \Zend_Date) {
+                $select->where($column ." = ?", $value->get(\TicketEvolution\Date::MYSQL_DATETIME));
             } else {
                 $select->where($column ." = ?", $value);
             }
@@ -234,7 +237,7 @@ class TicketEvolution_Db_Table_Abstract extends Zend_Db_Table_Abstract
                 $results = $this->fetchAll($select);
             }
         } catch(Exception $e) {
-            throw new TicketEvolution_Db_Table_Exception($e);
+            throw new namespace\Exception($e);
         }
         return $results;
     }
@@ -251,7 +254,7 @@ class TicketEvolution_Db_Table_Abstract extends Zend_Db_Table_Abstract
     {
         // Verify that parameters are in an array.
         if (!is_array($params)) {
-            throw new TicketEvolution_Db_Table_Exception('Query parameters must be in an array');
+            throw new namespace\Exception('Query parameters must be in an array');
         }
 
         /**

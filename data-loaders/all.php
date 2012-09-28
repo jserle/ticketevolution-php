@@ -14,18 +14,20 @@
  * to license@teamonetickets.com so we can send you a copy immediately.
  *
  * @category    TicketEvolution
- * @package     TicketEvolution_DataLoader
+ * @package     TicketEvolution\DataLoader
  * @copyright   Copyright (c) 2012 Team One Tickets & Sports Tours, Inc. (http://www.teamonetickets.com)
  * @license     https://github.com/ticketevolution/ticketevolution-php/blob/master/LICENSE.txt     New BSD License
  */
 
 
+namespace TicketEvolution;
+
 require_once 'bootstrap.php';
 require_once 'includes/common.php';
 
-$webService = new TicketEvolution_Webservice($registry->config->params);
+$webService = new Webservice($registry->config->params);
 
-$dataLoader = new TicketEvolution_DataLoader_Brokerages(
+$dataLoader = new DataLoader\Brokerages(
     $webService,
     $options
 );
@@ -33,7 +35,7 @@ $dataLoader = new TicketEvolution_DataLoader_Brokerages(
 $dataLoader->loadAllData();
 
 
-$dataLoader = new TicketEvolution_DataLoader_Categories(
+$dataLoader = new DataLoader\Categories(
     $webService,
     $options
 );
@@ -41,7 +43,7 @@ $dataLoader = new TicketEvolution_DataLoader_Categories(
 $dataLoader->loadAllData();
 
 
-$dataLoader = new TicketEvolution_DataLoader_Categories_Deleted(
+$dataLoader = new DataLoader\Categories_Deleted(
     $webService,
     $options
 );
@@ -49,7 +51,7 @@ $dataLoader = new TicketEvolution_DataLoader_Categories_Deleted(
 $dataLoader->loadAllData();
 
 
-$dataLoader = new TicketEvolution_DataLoader_Configurations(
+$dataLoader = new DataLoader\Configurations(
     $webService,
     $options
 );
@@ -57,7 +59,7 @@ $dataLoader = new TicketEvolution_DataLoader_Configurations(
 $dataLoader->loadAllData();
 
 
-$dataLoader = new TicketEvolution_DataLoader_Events(
+$dataLoader = new DataLoader\Events(
     $webService,
     $options
 );
@@ -65,7 +67,7 @@ $dataLoader = new TicketEvolution_DataLoader_Events(
 $dataLoader->loadAllData();
 
 
-$dataLoader = new TicketEvolution_DataLoader_Events_Deleted(
+$dataLoader = new DataLoader\Events_Deleted(
     $webService,
     $options
 );
@@ -73,7 +75,7 @@ $dataLoader = new TicketEvolution_DataLoader_Events_Deleted(
 $dataLoader->loadAllData();
 
 
-$dataLoader = new TicketEvolution_DataLoader_Offices(
+$dataLoader = new DataLoader\Offices(
     $webService,
     $options
 );
@@ -81,7 +83,7 @@ $dataLoader = new TicketEvolution_DataLoader_Offices(
 $dataLoader->loadAllData();
 
 
-$dataLoader = new TicketEvolution_DataLoader_Performers(
+$dataLoader = new DataLoader\Performers(
     $webService,
     $options
 );
@@ -89,7 +91,7 @@ $dataLoader = new TicketEvolution_DataLoader_Performers(
 $dataLoader->loadAllData();
 
 
-$dataLoader = new TicketEvolution_DataLoader_Performers_Deleted(
+$dataLoader = new DataLoader\Performers_Deleted(
     $webService,
     $options
 );
@@ -97,7 +99,7 @@ $dataLoader = new TicketEvolution_DataLoader_Performers_Deleted(
 $dataLoader->loadAllData();
 
 
-$dataLoader = new TicketEvolution_DataLoader_Users(
+$dataLoader = new DataLoader\Users(
     $webService,
     $options
 );
@@ -105,7 +107,7 @@ $dataLoader = new TicketEvolution_DataLoader_Users(
 $dataLoader->loadAllData();
 
 
-$dataLoader = new TicketEvolution_DataLoader_Venues(
+$dataLoader = new DataLoader\Venues(
     $webService,
     $options
 );
@@ -113,7 +115,7 @@ $dataLoader = new TicketEvolution_DataLoader_Venues(
 $dataLoader->loadAllData();
 
 
-$dataLoader = new TicketEvolution_DataLoader_Venues_Deleted(
+$dataLoader = new DataLoader\Venues_Deleted(
     $webService,
     $options
 );
