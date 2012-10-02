@@ -103,16 +103,16 @@ class EventPerformers extends AbstractTable
      * @var array
      */
     protected $_referenceMap    = array(
-        'Event'            => array(
+        'Event'             => array(
             'columns'           => 'eventId',
             'refTableClass'     => '\TicketEvolution\Db\Table\Events',
             'refColumns'        => 'eventId',
             'onDelete'          => self::CASCADE,
-            ),
-        'Performer'        => array(
+        ),
+        'Performer'         => array(
             'columns'           => 'performerId',
             'refTableClass'     => '\TicketEvolution\Db\Table\Performers',
             'refColumns'        => 'performerId',
-            ),
+        ),
     );
 }
