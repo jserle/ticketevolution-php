@@ -43,7 +43,7 @@ $dataLoader = new DataLoader\Categories(
 $dataLoader->loadAllData();
 
 
-$dataLoader = new DataLoader\Categories_Deleted(
+$dataLoader = new DataLoader\Categories\Deleted(
     $webService,
     $options
 );
@@ -67,7 +67,7 @@ $dataLoader = new DataLoader\Events(
 $dataLoader->loadAllData();
 
 
-$dataLoader = new DataLoader\Events_Deleted(
+$dataLoader = new DataLoader\Events\Deleted(
     $webService,
     $options
 );
@@ -91,7 +91,7 @@ $dataLoader = new DataLoader\Performers(
 $dataLoader->loadAllData();
 
 
-$dataLoader = new DataLoader\Performers_Deleted(
+$dataLoader = new DataLoader\Performers\Deleted(
     $webService,
     $options
 );
@@ -115,7 +115,7 @@ $dataLoader = new DataLoader\Venues(
 $dataLoader->loadAllData();
 
 
-$dataLoader = new DataLoader\Venues_Deleted(
+$dataLoader = new DataLoader\Venues\Deleted(
     $webService,
     $options
 );
