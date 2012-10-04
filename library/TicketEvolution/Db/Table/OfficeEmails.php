@@ -64,7 +64,7 @@ class OfficeEmails extends AbstractTable
      *
      * @var string
      */
-    //protected $_rowClass = '\TicketEvolution\Db\Table\Row';
+    //protected $_rowClass = 'TicketEvolution\Db\Table\Row';
 
     /**
      * Sets where default column values should be taken from
@@ -105,7 +105,7 @@ class OfficeEmails extends AbstractTable
     protected $_referenceMap    = array(
         'Office'            => array(
             'columns'           => 'officeId',
-            'refTableClass'     => '\TicketEvolution\Db\Table\Offices',
+            'refTableClass'     => 'TicketEvolution\Db\Table\Offices',
             'refColumns'        => 'officeId',
         ),
     );

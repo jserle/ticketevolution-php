@@ -64,7 +64,7 @@ class TicketGroupSeats extends AbstractTable
      *
      * @var string
      */
-    //protected $_rowClass = '\TicketEvolution\Db\Table\Row';
+    //protected $_rowClass = 'TicketEvolution\Db\Table\Row';
 
     /**
      * Sets where default column values should be taken from
@@ -105,7 +105,7 @@ class TicketGroupSeats extends AbstractTable
     protected $_referenceMap    = array(
         'TicketGroup'       => array(
             'columns'           => 'ticketGroupId',
-            'refTableClass'     => '\TicketEvolution\Db\Table\TicketGroups',
+            'refTableClass'     => 'TicketEvolution\Db\Table\TicketGroups',
             'refColumns'        => 'ticketGroupId',
         ),
     );

@@ -64,7 +64,7 @@ class TicketGroups extends AbstractTable
      *
      * @var string
      */
-    //protected $_rowClass = '\TicketEvolution\Db\Table\Row';
+    //protected $_rowClass = 'TicketEvolution\Db\Table\Row';
 
     /**
      * Sets where default column values should be taken from
@@ -82,7 +82,7 @@ class TicketGroups extends AbstractTable
      * @var array
      */
     protected $_dependentTables = array(
-        '\TicketEvolution\Db\Table\TicketGroupSeats',
+        'TicketEvolution\Db\Table\TicketGroupSeats',
     );
 
 
@@ -107,17 +107,17 @@ class TicketGroups extends AbstractTable
     protected $_referenceMap    = array(
         'Event'            => array(
             'columns'           => 'eventId',
-            'refTableClass'     => '\TicketEvolution\Db\Table\Events',
+            'refTableClass'     => 'TicketEvolution\Db\Table\Events',
             'refColumns'        => 'eventId',
         ),
         'Brokerages'            => array(
             'columns'           => 'brokerId',
-            'refTableClass'     => '\TicketEvolution\Db\Table\Brokerages',
+            'refTableClass'     => 'TicketEvolution\Db\Table\Brokerages',
             'refColumns'        => 'brokerId',
         ),
         'Offices'            => array(
             'columns'           => 'officeId',
-            'refTableClass'     => '\TicketEvolution\Db\Table\Offices',
+            'refTableClass'     => 'TicketEvolution\Db\Table\Offices',
             'refColumns'        => 'officeId',
         ),
     );

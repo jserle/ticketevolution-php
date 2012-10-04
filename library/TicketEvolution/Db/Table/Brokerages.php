@@ -64,7 +64,7 @@ class Brokerages extends AbstractTable
      *
      * @var string
      */
-    //protected $_rowClass = '\TicketEvolution\Db\Table\Row';
+    //protected $_rowClass = 'TicketEvolution\Db\Table\Row';
 
     /**
      * Sets where default column values should be taken from
@@ -82,8 +82,8 @@ class Brokerages extends AbstractTable
      * @var array
      */
     protected $_dependentTables = array(
-        '\TicketEvolution\Db\Table\Offices',
-        '\TicketEvolution\Db\Table\Users',
+        'TicketEvolution\Db\Table\Offices',
+        'TicketEvolution\Db\Table\Users',
     );
 
 

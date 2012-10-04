@@ -64,7 +64,7 @@ class Offices extends AbstractTable
      *
      * @var string
      */
-    //protected $_rowClass = '\TicketEvolution\Db\Table\Row';
+    //protected $_rowClass = 'TicketEvolution\Db\Table\Row';
 
     /**
      * Sets where default column values should be taken from
@@ -82,9 +82,9 @@ class Offices extends AbstractTable
      * @var array
      */
     protected $_dependentTables = array(
-        '\TicketEvolution\Db\Table\Users',
-        '\TicketEvolution\Db\Table\OfficeHours',
-        '\TicketEvolution\Db\Table\OfficeEmails',
+        'TicketEvolution\Db\Table\Users',
+        'TicketEvolution\Db\Table\OfficeHours',
+        'TicketEvolution\Db\Table\OfficeEmails',
     );
 
 
@@ -109,7 +109,7 @@ class Offices extends AbstractTable
     protected $_referenceMap    = array(
         'Brokerage'            => array(
             'columns'           => 'brokerageId',
-            'refTableClass'     => '\TicketEvolution\Db\Table\Brokerages',
+            'refTableClass'     => 'TicketEvolution\Db\Table\Brokerages',
             'refColumns'        => 'brokerageId',
         ),
     );

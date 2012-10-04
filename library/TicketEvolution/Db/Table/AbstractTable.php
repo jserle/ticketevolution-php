@@ -47,7 +47,7 @@ class AbstractTable extends \Zend_Db_Table_Abstract
      *
      * @var string
      */
-    protected $_rowClass = '\TicketEvolution\Db\Table\Row';
+    protected $_rowClass = 'TicketEvolution\Db\Table\Row';
 
     /**
      * Returns the name of the column we are using to track status
@@ -94,7 +94,7 @@ class AbstractTable extends \Zend_Db_Table_Abstract
      */
     protected function _setEmptyFieldsToNull(array &$data)
     {
-        array_walk($data, array('\TicketEvolution\Db\Table\AbstractTable', '_emptyFieldsToNull'));
+        array_walk($data, array('TicketEvolution\Db\Table\AbstractTable', '_emptyFieldsToNull'));
     }
 
 

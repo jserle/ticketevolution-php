@@ -64,7 +64,7 @@ class Categories extends AbstractTable
      *
      * @var string
      */
-    //protected $_rowClass = '\TicketEvolution\Db\Table\Row';
+    //protected $_rowClass = 'TicketEvolution\Db\Table\Row';
 
     /**
      * Sets where default column values should be taken from
@@ -82,7 +82,7 @@ class Categories extends AbstractTable
      * @var array
      */
     protected $_dependentTables = array(
-        '\TicketEvolution\Db\Table\Categories',
+        'TicketEvolution\Db\Table\Categories',
     );
 
 
@@ -107,7 +107,7 @@ class Categories extends AbstractTable
     protected $_referenceMap    = array(
         'ParentCategory'    => array(
             'columns'           => 'parentCategoryId',
-            'refTableClass'     => '\TicketEvolution\Db\Table\Categories',
+            'refTableClass'     => 'TicketEvolution\Db\Table\Categories',
             'refColumns'        => 'categoryId',
         ),
     );

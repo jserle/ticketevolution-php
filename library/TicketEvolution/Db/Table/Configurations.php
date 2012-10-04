@@ -64,7 +64,7 @@ class Configurations extends AbstractTable
      *
      * @var string
      */
-    //protected $_rowClass = '\TicketEvolution\Db\Table\Row';
+    //protected $_rowClass = 'TicketEvolution\Db\Table\Row';
 
     /**
      * Sets where default column values should be taken from
@@ -105,7 +105,7 @@ class Configurations extends AbstractTable
     protected $_referenceMap    = array(
         'Venue'   => array(
             'columns'           => 'venueId',
-            'refTableClass'     => '\TicketEvolution\Db\Table\Venues',
+            'refTableClass'     => 'TicketEvolution\Db\Table\Venues',
             'refColumns'        => 'venueId'
         ),
     );

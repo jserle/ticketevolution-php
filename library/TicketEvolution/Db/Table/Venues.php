@@ -64,7 +64,7 @@ class Venues extends AbstractTable
      *
      * @var string
      */
-    //protected $_rowClass = '\TicketEvolution\Db\Table\Row';
+    //protected $_rowClass = 'TicketEvolution\Db\Table\Row';
 
     /**
      * Sets where default column values should be taken from
@@ -82,9 +82,9 @@ class Venues extends AbstractTable
      * @var array
      */
     protected $_dependentTables = array(
-        '\TicketEvolution\Db\Table\Configurations',
-        '\TicketEvolution\Db\Table\Events',
-        '\TicketEvolution\Db\Table\Performers',
+        'TicketEvolution\Db\Table\Configurations',
+        'TicketEvolution\Db\Table\Events',
+        'TicketEvolution\Db\Table\Performers',
     );
 
 
@@ -106,7 +106,6 @@ class Venues extends AbstractTable
      *
      * @var array
      */
-    protected $_referenceMap    = array(
-    );
+    protected $_referenceMap    = array();
 
 }

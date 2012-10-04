@@ -64,7 +64,7 @@ class EventPerformers extends AbstractTable
      *
      * @var string
      */
-    //protected $_rowClass = '\TicketEvolution\Db\Table\Row';
+    //protected $_rowClass = 'TicketEvolution\Db\Table\Row';
 
     /**
      * Sets where default column values should be taken from
@@ -105,13 +105,13 @@ class EventPerformers extends AbstractTable
     protected $_referenceMap    = array(
         'Event'             => array(
             'columns'           => 'eventId',
-            'refTableClass'     => '\TicketEvolution\Db\Table\Events',
+            'refTableClass'     => 'TicketEvolution\Db\Table\Events',
             'refColumns'        => 'eventId',
             'onDelete'          => self::CASCADE,
         ),
         'Performer'         => array(
             'columns'           => 'performerId',
-            'refTableClass'     => '\TicketEvolution\Db\Table\Performers',
+            'refTableClass'     => 'TicketEvolution\Db\Table\Performers',
             'refColumns'        => 'performerId',
         ),
     );

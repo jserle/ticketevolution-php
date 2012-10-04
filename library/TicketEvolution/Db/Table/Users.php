@@ -64,7 +64,7 @@ class Users extends AbstractTable
      *
      * @var string
      */
-    //protected $_rowClass = '\TicketEvolution\Db\Table\Row';
+    //protected $_rowClass = 'TicketEvolution\Db\Table\Row';
 
     /**
      * Sets where default column values should be taken from
@@ -105,12 +105,12 @@ class Users extends AbstractTable
     protected $_referenceMap    = array(
         'Brokerage'             => array(
             'columns'           => 'brokerId',
-            'refTableClass'     => '\TicketEvolution\Db\Table\Brokerages',
+            'refTableClass'     => 'TicketEvolution\Db\Table\Brokerages',
             'refColumns'        => 'brokerId',
         ),
         'Office'            => array(
             'columns'           => 'officeId',
-            'refTableClass'     => '\TicketEvolution\Db\Table\Offices',
+            'refTableClass'     => 'TicketEvolution\Db\Table\Offices',
             'refColumns'        => 'officeId',
         ),
     );
