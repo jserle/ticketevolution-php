@@ -3542,7 +3542,7 @@ class Webservice
     protected function _setHeaders($apiToken, $apiVersion, $requestSignature=null)
     {
         $headers = array(
-            'User-Agent' => 'TicketEvolution_Webservice',
+            'User-Agent' => 'TicketEvolution\Webservice',
             'X-Token'   => (string)$apiToken,
             'Accept'    => (string)'application/json',
         );

@@ -137,7 +137,7 @@ class Deleted extends AbstractDataLoader
          * as inactive we'll still do it since delete() does not allow us to
          * set properties such as 'deleted_at' at the same time.
          *
-         * NOTE: delete() is overridden in TicketEvolution_Db_Table_Abstract to
+         * NOTE: delete() is overridden in TicketEvolution\Db\Table\AbstractTable to
          * only toggle the status to inactive, but it still cascades doing the same.
          */
         try {

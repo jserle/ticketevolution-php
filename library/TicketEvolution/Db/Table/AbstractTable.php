@@ -184,7 +184,7 @@ class AbstractTable extends \Zend_Db_Table_Abstract
      * Get results via an array of parameters
      *
      * @param  mixed $params Options to use for the search query or a `uid`
-     * @throws TicketEvolution_Db_Table_Exception
+     * @throws TicketEvolution\Db\Table\Exception
      * @return mixed
      */
     public function getByParameters($params, $limit=null, $orderBy=null)

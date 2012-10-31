@@ -34,8 +34,8 @@ namespace TicketEvolution;
 class DateInterval extends \DateInterval
 {
     /**
-     * Creates a TicketEvolution_DateInterval from a DateInterval instance.
-     * Makes it easy to pass in a standard PHP DateInterval to create an TicketEvolution_DateInterval
+     * Creates a TicketEvolution\DateInterval from a DateInterval instance.
+     * Makes it easy to pass in a standard PHP DateInterval to create an TicketEvolution\DateInterval
      *
      * NOTE: Even if the $dateInterval you pass in has the 'days' property set
      *       it will be set to boolean false. Apparently you cannot extend
