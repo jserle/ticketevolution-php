@@ -268,7 +268,7 @@ if (isset($_REQUEST['apiMethod'])) {
                      * Setup any necessary vars and execute the call
                      */
                     $options = _getOptions($input);
-                    var_dump($options);
+                    //var_dump($options);
 
                     switch ($apiMethod) {
                         case 'listBrokerages' :
@@ -343,19 +343,36 @@ if (isset($_REQUEST['apiMethod'])) {
 
                             $client = new stdClass;
                             $client->name = $options['name'];
-                            $client->office_id = $options['office_id'];
-                            $client->primary_shipping_address_id = $options['primary_shipping_address_id'];
-                            $client->primary_credit_card_id = $options['primary_credit_card_id'];
-                            $client->tags = array(explode(',', $options['tags']));
+                            if (!empty($options['office_id'])) {
+                                $client->office_id = $options['office_id'];
+                            }
+                            if (!empty($options['primary_shipping_address_id'])) {
+                                $client->primary_shipping_address_id = $options['primary_shipping_address_id'];
+                            }
+                            if (!empty($options['primary_credit_card_id'])) {
+                                $client->primary_credit_card_id = $options['primary_credit_card_id'];
+                            }
+                            if (!empty($options['tags'])) {
+                                $client->tags = array(explode(',', $options['tags']));
+                            }
 
                             // Display the code
                             echo '$client = new stdClass;' . PHP_EOL
                                . '$client->name = \'' . $options['name'] . '\';' . PHP_EOL
-                               . '$client->office_id = \'' . $options['office_id'] . '\';' . PHP_EOL
-                               . '$client->primary_shipping_address_id = \'' . $options['primary_shipping_address_id'] . '\';' . PHP_EOL
-                               . '$client->primary_credit_card_id = \'' . $options['primary_credit_card_id'] . '\';' . PHP_EOL
-                               . '$client->tags = array(explode(\',\', ' . $options['tags'] . '));' . PHP_EOL
-                               . PHP_EOL
+                            ;
+                            if (!empty($options['office_id'])) {
+                                echo '$client->office_id = \'' . $options['office_id'] . '\';' . PHP_EOL;
+                            }
+                            if (!empty($options['primary_shipping_address_id'])) {
+                                echo '$client->primary_shipping_address_id = \'' . $options['primary_shipping_address_id'] . '\';' . PHP_EOL;
+                            }
+                            if (!empty($options['primary_credit_card_id'])) {
+                                echo '$client->primary_credit_card_id = \'' . $options['primary_credit_card_id'] . '\';' . PHP_EOL;
+                            }
+                            if (!empty($options['tags'])) {
+                                echo '$client->tags = array(explode(\',\', ' . $options['tags'] . '));' . PHP_EOL;
+                            }
+                            echo PHP_EOL
                                . '$results = $tevo->' . $apiMethod . '(' . $updateId . ', $client);' . PHP_EOL
                             ;
 
@@ -457,7 +474,7 @@ if (isset($_REQUEST['apiMethod'])) {
                                . '// Addresses must be passed in an array, even if there is only one' . PHP_EOL
                                . '$addresses[] = $address;' . PHP_EOL
                                . PHP_EOL
-                               . '$results = $tevo->' . $apiMethod . '($addresses);' . PHP_EOL
+                               . '$results = $tevo->' . $apiMethod . '(' . $client_id . ', $addresses);' . PHP_EOL
                             ;
 
                             $results = _doCreateById($tevo, $apiMethod, $client_id, $addresses);
