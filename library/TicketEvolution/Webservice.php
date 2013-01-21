@@ -505,7 +505,7 @@ class Webservice
      */
     public function createClients(array $clients)
     {
-        $body = new stdClass;
+        $body = new \stdClass;
         $body->clients = $clients;
         $options = json_encode($body);
 
@@ -685,7 +685,7 @@ class Webservice
      */
     public function createClientCompanies(array $companies)
     {
-        $body = new stdClass;
+        $body = new \stdClass;
         $body->companies = $companies;
         $options = json_encode($body);
 
@@ -868,7 +868,7 @@ class Webservice
      */
     public function createClientAddresses($clientId, array $addresses)
     {
-        $body = new stdClass;
+        $body = new \stdClass;
         $body->addresses = $addresses;
         $options = json_encode($body);
 
@@ -1052,7 +1052,7 @@ class Webservice
      */
     public function createClientPhoneNumbers($clientId, array $phoneNumbers)
     {
-        $body = new stdClass;
+        $body = new \stdClass;
         $body->phone_numbers = $phoneNumbers;
         $options = json_encode($body);
 
@@ -1236,7 +1236,7 @@ class Webservice
      */
     public function createClientEmailAddresses($clientId, array $emailAddresses)
     {
-        $body = new stdClass;
+        $body = new \stdClass;
         $body->email_addresses[] = $emailAddresses;
         $options = json_encode($body);
 
@@ -1430,7 +1430,7 @@ class Webservice
      */
     public function createClientCreditCards($clientId, array $creditCards)
     {
-        $body = new stdClass;
+        $body = new \stdClass;
         foreach ($creditCards as $creditCard) {
             /**
              * Strip non-numeric chars from CC number and validate it
@@ -2660,7 +2660,7 @@ class Webservice
      */
     public function createOrders(array $orders, $fulfillment=false)
     {
-        $body = new stdClass;
+        $body = new \stdClass;
         $body->orders[] = $orders;
         $options = json_encode($body);
 
@@ -3038,7 +3038,7 @@ class Webservice
      */
     public function createShipments(array $shipments)
     {
-        $body = new stdClass;
+        $body = new \stdClass;
         $body->shipments = $shipments;
         $options = json_encode($body);
 
