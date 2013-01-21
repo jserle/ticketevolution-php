@@ -91,7 +91,7 @@ class Deleted extends AbstractDataLoader
             'popularityScore'               => (float)  $result->popularity_score,
             'performerKeywords'             => (string) $result->keywords,
             'updated_at'                    => (string) $result->updated_at,
-            'performerStatus'               => (int)    0,
+            'performersStatus'               => (int)    0,
         );
 
         if (!empty($result->created_at)) {

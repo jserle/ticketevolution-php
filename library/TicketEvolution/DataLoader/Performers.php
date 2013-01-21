@@ -90,7 +90,7 @@ class Performers extends AbstractDataLoader
             'popularityScore'               => (float)  $result->popularity_score,
             'performerKeywords'             => (string) $result->keywords,
             'updated_at'                    => (string) $result->updated_at,
-            'performerStatus'               => (int)    1,
+            'performersStatus'               => (int)    1,
         );
 
         if (!empty($result->created_at)) {
