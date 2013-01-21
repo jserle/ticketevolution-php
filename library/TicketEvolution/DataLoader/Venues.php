@@ -97,7 +97,7 @@ class Venues extends AbstractDataLoader
             'venueKeywords'             => (string) $result->keywords,
             'updated_at'                => (string) $result->updated_at,
 
-            'venueStatus'               => (int)    1,
+            'venuesStatus'               => (int)    1,
         );
 
         if (!empty($result->created_at)) {
