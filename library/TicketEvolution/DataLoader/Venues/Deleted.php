@@ -98,7 +98,7 @@ class Deleted extends AbstractDataLoader
             'venueKeywords'             => (string) $result->keywords,
             'updated_at'                => (string) $result->updated_at,
 
-            'venueStatus'               => (int)    0,
+            'venuesStatus'               => (int)    0,
         );
 
         if (!empty($result->created_at)) {
